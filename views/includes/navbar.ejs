@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="/css/style.css">
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" id="toggleButton">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
+        </div>
+        <!-- search button -->  
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search"  action="/submit" method="post">
+            <label for="title"></label>
+            <input class="form-control me-2 search-input" placeholder="Search destinations"  type="text" id="title" name="title" aria-label="Search" autocomplete="off">
+            <button class="btn search-btn" type="submit" ><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div>  
+        <div class="navbar-nav ms-auto">  
+          <a class="nav-link" href="/listings/new">Add listings🗂️</a>
+          <a class="nav-link" href="/about"><b>About us👨‍💻</b></a>
+          <% if(!currUser) {%>
+          <a class="nav-link" href="/signup"><b>signup</b></a>
+          <a class="nav-link" href="/login"><b>login</b></a>
+          <% } %><% if( currUser) {%>
+          <a class="nav-link" href="/logout">log out</a>
+          <% } %>
+          <script>
+            document.getElementById('toggleButton').addEventListener('click', function() {
+      var content = document.getElementsByClassName('container');
+      content.classList.toggle('hidden');
+    });
+            </script> 
+        </div>
+      </div>
+    </div>
+ </nav>
+ 

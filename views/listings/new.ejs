@@ -1,0 +1,55 @@
+
+<% layout('/layouts/boilerplate') %>
+<div class="row">
+    <div class="col-8 offset-2">
+    <body>
+        <h3 style="color: #fe424d;; padding-top: 2rem;">Create A new Listing</h3><br>
+        <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+            <!-- <div class="mb-3">
+                <label for="ownername" class="form-lable"><b>Owner Name</b></label><br>
+                <input type="text" name="listing[ownername]" placeholder="enter ownername" class="form-control" required><br>
+                <div  class="valid-feedback">Name looks good</div>
+            </div > -->
+            <div class="mb-3">
+                <label for="title" class="form-lable"><b>Title</b></label><br>
+                <input type="text" name="listing[title]" placeholder="enter title" class="form-control" autocomplete="off" required><br>
+                <div  class="valid-feedback">Title looks good</div>
+            </div >
+            <div class="mb-3">
+                <label for="description" class="form-lable"><b>Description</b></label><br>
+                <textarea name="listing[description]" placeholder="enter description" class="form-control" autocomplete="off" required></textarea><br>
+                <div  class="invalid-feedback">Description should be short</div>
+            </div>
+            <div class="row">
+                <div class="mb-3">
+                    <label for="image" class="form-lable"><b>upload Image</b></label><br>
+                    <input type="file" name="listing[image]" class="form-control" autocomplete="off" required><br>
+                    <div class="invalid-feedback">Image should be clear</div>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-lable"><b>Price</b></label><br>
+                    <input  name="listing[price]" placeholder="enter price" class="form-control" autocomplete="off" required><br>
+                    <div  class="invalid-feedback">Enter  Valid Price</div>
+                </div >
+                <div class=" mb-3">
+                    <label for="location" class="form-lable"><b>Location</b></label><br>
+                    <input type="text" name="listing[location]" placeholder="enter location" autocomplete="off" class="form-control" id="name"  required><br>
+                    <div  class="invalid-feedback">Please Enter  Valid Location</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="country" class="form-lable"><b>Country</b></label><br>
+                <input type="text" name="listing[country]" placeholder="Add country" class="form-control" autocomplete="off" required><br>
+                <div  class="invalid-feedback">Please Enter Valid Country Name</div>
+            </div>
+            <div class="mb-3">
+                <label for="contact" class="form-lable"><b>Contact Info</b></label><br>
+                <input style="border-color:brown; border-style:groove; " type="text" name="listing[contact]" title="Error Message" pattern="[1-9]{1}[0-9]{9}" name="listing[contact]" placeholder="enter contact number" class="form-control" autocomplete="off" required><br>
+                <div  class="invalid-feedback">Enter Valid number</div>
+            </div >
+            <button class="btn btn-dark edit-btn">ADD</button>  
+        </form>
+    </body>
+    </html>
+</div>
+</div>

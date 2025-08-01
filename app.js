@@ -40,7 +40,7 @@ const search=require("./routes/matchingRoutes.js");
 
 
 const store = MongoStore.create({
-    mongoUrl:MONGO_URL,
+    mongoUrl:process.env.ATLASDB_URL,
     crypto: {
         secret:process.env.SECRET
     },
@@ -81,7 +81,7 @@ main()
 
 
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(process.env.ATLASDB_URL);
 }
 
 app.use((req, res, next) => {

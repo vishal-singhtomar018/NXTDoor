@@ -56,7 +56,7 @@ module.exports.logout=(req,res,next)=>
     if(err){
        return next(err);
     }
-    req.flash("success","Thanks for Valuable Time");
+    req.flash("success","Hope you like this ,Please Re visit again");
     res.redirect("/listings");
     })
 }

@@ -67,8 +67,6 @@ module.exports.Createnewlisting = async (req, res, next) => {
   }
 };
 
-
-
 module.exports.showlistings = async (req, res, next) => {
   try {
     let { id } = req.params;
@@ -163,11 +161,12 @@ module.exports.submit = async (req, res) => {
       ],
     });
 
-    console.log(allListings);
+    // console.log(allListings);
 
     // Check if there are any listings found
     if (allListings.length === 0) {
-      res.send("No data found");
+      req.flash("error", "No data found");
+      return res.redirect("/explore"); // or any route you want to show the flash message
     } else {
       res.render("listings/search.ejs", { allListings });
     }

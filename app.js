@@ -16,7 +16,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser("secretcode"));
 const passport=require("passport");
 const localStrategy=require("passport-local");
-const ExpressError = require("../GlobalGateway/util/ExpressError.js");
+const ExpressError = require("./util/ExpressError.js");
 const User = require("./models/user");
 const MongoStore = require("connect-mongo");
 

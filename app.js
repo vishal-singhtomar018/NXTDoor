@@ -109,7 +109,7 @@ app.use((req, res, next) => {
 
 
 app.use("/",explore);
-app.use("/",listings);
+app.use("/listings",listings);
 app.use("", UserRoute);
 app.use("/listings",Reviews);
 app.use("/",signup);

@@ -1,14 +1,14 @@
 <% layout('/layouts/boilerplate') %>
-
-<div class="row mt-3">
-    <h1 class="col-6 offset-3">Signup on Wanderlust</h1>
+<div class="signupbox">
+   <div class="row mt-4 ">
+    <h1 class="col-6 offset-3 ">Signup on GlobalGateway</h1>
     <div class="col-6 offset-3">
         <form action="/signup" method="POST" novalidate class="needs-validation">
          <div class="mb-3">
             <label for="username" class="form-lable"><b>Username</b></label><br>
             <input 
             type="text"
-             placeholder="enter username" 
+             placeholder="Enter Username" 
              class="form-control"  
              id="username"
              name="username"
@@ -19,7 +19,7 @@
             <label for="email" class="form-lable"><b>Email</b></label><br>
             <input
             type="email" 
-            placeholder="enter email"
+            placeholder="Enter Email"
             class="form-control"  
             name="email"
             id="email" 
@@ -29,13 +29,15 @@
          <div class="mb-3">
             <label for="password" class="form-lable"><b>Password</b></label><br>
             <input type="password"
-            placeholder="enter password"
+            placeholder="Enter Password"
             class="form-control" 
             id="password"
             name="password"
             required><br>
           </div>
-          <button class="btn btn-success">Signup</button>
+          <button class="btn btn-success" type="submit">Signup</button><br><br>
+          <a class="Account" href="/login" class="small text-muted">Have an account &nbsp;<i class="fa-solid fa-right-to-bracket"></i></a>
         </form>
     </div>
+</div>
 </div>

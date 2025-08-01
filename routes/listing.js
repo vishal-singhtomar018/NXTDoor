@@ -6,16 +6,6 @@ const multer=require("multer");
 const {storage}=require("../cloudConfig.js");
 const upload=multer({storage});
 
-// const flash=require("connect-flash");
-
-// router.use(flash());
-router.use((req,res,next)=>
-{
-    res.locals.success=req.flash("success");
-    res.locals.error=req.flash("error");
-    res.locals.currUser=req.user;
-    next();
-})
 
 
 // const validateListing =(req,res,next)=>
@@ -33,19 +23,27 @@ router.use((req,res,next)=>
 // }
 
 router.route("/")
-.get((listingController.index))
-.post(isloggedIn,
-    upload.single("listing[image]"),
-   (listingController.Createnewlisting)
-);
+  .get(listingController.index)
+  .post(
+    isloggedIn,
+    upload.array("images", 4), // match input name
+    listingController.Createnewlisting
+  );
 
-router.get("/new",isloggedIn,listingController.renderNewForm);
+
+
+router.get("/new",isloggedIn,listingController.renderNewForm);;
+// router.post("/search",listingController.FilterSearch);
+
 
 router.route("/:id")
 .put(isloggedIn,isOwner,upload.single("listing[image]"),listingController.updatelistings)
 .delete(isloggedIn,isOwner,listingController.deletelistings);
 
+
 router.get("/:id",listingController.showlistings);
 router.get("/:id/edit",isloggedIn,isOwner,listingController.editListings); 
+
+router.post("/submit",listingController.submit);
 
 module.exports=router;

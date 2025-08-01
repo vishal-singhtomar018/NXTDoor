@@ -1,8 +1,7 @@
 const User=require("../models/user.js")
 const passport=require("passport");
-const { trace } = require("joi");
-// const {saveRedirectUrl}=require("../middleware.js");
-// const userController=require("../controllers/user.js");
+const {saveRedirectUrl}=require("../middleware.js");
+const userController=require("../controllers/user.js");
 
 
 module.exports.rendersignup=(req,res)=>
@@ -22,7 +21,7 @@ module.exports.signup=async(req,res)=>{
             {
                 return next(err)
             }
-            req.flash("success","welcome to wanderlust");
+            req.flash("success","Welcome To Your Home");
             res.redirect("/listings");
         });
     }
@@ -37,20 +36,27 @@ module.exports.renderlogin=(req,res)=>
     res.render("users/login.ejs");
 }
 
-module.exports.login=async(req,res)=>
-{
-    req.flash("success","welcome back to Wanderlust");
-    let redirectUrl=res.locals.redirectUrl || "/listings";
+// controllers/user.js
+module.exports.login = (req, res) => {
+    req.flash("success", "Welcome back!");
+
+    console.log("➡️ Redirect URL in session:", req.session.returnTo);
+
+    const redirectUrl = req.session.returnTo || "/listings";
+    delete req.session.returnTo;
+
     res.redirect(redirectUrl);
-}
+};
+
+
 
 module.exports.logout=(req,res,next)=>
-{
+{   
     req.logout((err)=> {
     if(err){
        return next(err);
     }
-    req.flash("success","you are logged out!");
+    req.flash("success","Thanks for Valuable Time");
     res.redirect("/listings");
     })
 }

@@ -2,15 +2,26 @@ const { reset } = require("nodemon");
 const Listing=require("./models/listing");
 const Review=require("./models/review.js");
 
-module.exports.isloggedIn=(req,res,next)=>
-{
-    if(!req.isAuthenticated())
-        {
-            req.flash("error","you must logged in");
-            return res.redirect("/login");
-        }
-        next();
-}
+
+
+module.exports.saveRedirectUrl = (req, res, next) => {
+    if (req.session.returnTo) {
+        res.locals.redirectUrl = req.session.returnTo;
+    }
+    next();
+};
+
+
+// middleware.js
+module.exports.isloggedIn = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        req.session.returnTo = req.originalUrl;
+        req.flash("error", "You must be signed in first!");
+        return res.redirect("/login");
+    }
+    next();
+};
+
 
 module.exports.isreviewloggedIn=(req,res,next)=>
 {
@@ -22,14 +33,11 @@ module.exports.isreviewloggedIn=(req,res,next)=>
         next();
 }
 
-module.exports.saveRedirectUrl=(req,res,next)=>
-{
-    if(req.session.redirectUrl){
-    res.locals.redirectUrl=req.session.redirectUrl;
-    console.log(redirectUrl);
-    }
-    next();
-}
+// middleware.js or wherever you defined it
+// middleware.js
+// middleware.js
+
+
 
 module.exports.isOwner=async(req,res,next)=>
 {

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Rent Filter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .filter-bar {
+            background-color: #d32f2f;
+            padding: 10px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-item {
+            background: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .filter-item:hover {
+            background: #f3f3f3;
+        }
+
+        .filter-dropdown {
+            display: none;
+            position: absolute;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .filter-item.active + .filter-dropdown {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <div class="filter-bar">
+        <button class="filter-item" onclick="toggleDropdown('cityDropdown')">City</button>
+        <div id="cityDropdown" class="filter-dropdown">
+            <select class="form-select">
+                <option>Indore</option>
+                <option>Bhopal</option>
+                <option>Mumbai</option>
+            </select>
+        </div>
+
+        <button class="filter-item" onclick="toggleDropdown('budgetDropdown')">Budget</button>
+        <div id="budgetDropdown" class="filter-dropdown">
+            <input type="number" class="form-control" placeholder="Enter Max Budget">
+        </div>
+
+        <button class="filter-item" onclick="toggleDropdown('amenitiesDropdown')">Amenities</button>
+        <div id="amenitiesDropdown" class="filter-dropdown">
+            <label><input type="checkbox"> WiFi</label><br>
+            <label><input type="checkbox"> Parking</label><br>
+            <label><input type="checkbox"> AC</label>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown(id) {
+        document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+            if (dropdown.id === id) {
+                dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

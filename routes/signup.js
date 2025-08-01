@@ -11,7 +11,7 @@ router.post("/signup",async(req,res)=>
         const newUser=new User({email,username});
         const  registerdUser=await User.register(newUser,password);
         console.log(registerdUser);
-        req.flash("success","welcome to WanderLust");
+        req.flash("success","welcome to RoomRental");
         res.redirect("/listings");
     }
     catch(err)

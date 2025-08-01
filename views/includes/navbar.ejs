@@ -1,39 +1,61 @@
 <link rel="stylesheet" href="/css/style.css">
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" id="toggleButton">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
-        </div>
-        <!-- search button -->  
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search"  action="/submit" method="post">
-            <label for="title"></label>
-            <input class="form-control me-2 search-input" placeholder="Search destinations"  type="text" id="title" name="title" aria-label="Search" autocomplete="off">
-            <button class="btn search-btn" type="submit" ><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-          </form>
-        </div>  
-        <div class="navbar-nav ms-auto">  
-          <a class="nav-link" href="/listings/new">Add listings🗂️</a>
-          <a class="nav-link" href="/about"><b>About us👨‍💻</b></a>
-          <% if(!currUser) {%>
-          <a class="nav-link" href="/signup"><b>signup</b></a>
-          <a class="nav-link" href="/login"><b>login</b></a>
-          <% } %><% if( currUser) {%>
-          <a class="nav-link" href="/logout">log out</a>
+<nav class="navbar bg-body-tertiary fixed-top border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link" href="/listings">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/explore">Explore</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/new">Add listings 🗂️</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about"><b>About us 👨‍💻</b></a>
+          </li>
+
+          <% if (!currUser) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup"><b>Signup</b></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login"><b>Login</b></a>
+            </li>
           <% } %>
-          <script>
-            document.getElementById('toggleButton').addEventListener('click', function() {
-      var content = document.getElementsByClassName('container');
-      content.classList.toggle('hidden');
-    });
-            </script> 
-        </div>
+          <% if (currUser) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+          <% } %>
+        </ul>
+
+        <!-- Search Form -->
+        <form class="d-flex mt-3" role="search" action="/listings/submit" method="post">
+          <input class="form-control me-2 search-input" type="text" name="title" placeholder="Search destinations" aria-label="Search" autocomplete="off">
+          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+        </form>
+
+        <!-- Google Translate Element -->
+        <div class="mt-3" id="google_translate_element"></div>
+        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
       </div>
     </div>
- </nav>
- 
+  </div>
+</nav>
+
+
+

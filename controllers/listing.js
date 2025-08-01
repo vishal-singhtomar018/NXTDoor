@@ -169,7 +169,7 @@ module.exports.submit = async (req, res) => {
     if (allListings.length === 0) {
       res.send("No data found");
     } else {
-      res.render("listings/Search.ejs", { allListings });
+      res.render("listings/search.ejs", { allListings });
     }
   } catch (error) {
     console.error("Error while fetching listings:", error);

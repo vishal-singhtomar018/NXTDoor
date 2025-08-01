@@ -8,7 +8,7 @@ const methodOverride = require('method-override');
 const path=require("path");
 app.use(express.static('public'));
 
-const MONGO_URL=process.env.MONGO_URL;
+const MONGO_URL = process.env.ATLASDB_URL;
 const ejsMate=require("ejs-mate");
 const flash=require("connect-flash");
 const session=require("express-session");
@@ -18,6 +18,7 @@ const passport=require("passport");
 const localStrategy=require("passport-local");
 const ExpressError = require("../GlobalGateway/util/ExpressError.js");
 const User = require("./models/user");
+const MongoStore = require("connect-mongo");
 
 
 // const { ConnectionClosedEvent } = require("mongodb");
@@ -37,7 +38,18 @@ const Listing=require("./models/listing");
 const explore=require("./routes/explore.js")
 const search=require("./routes/matchingRoutes.js");
 
+
+const store = MongoStore.create({
+    mongoUrl:MONGO_URL,
+    crypto: {
+        secret:process.env.SECRET
+    },
+    touchAfter: 24 * 3600 // time period in seconds
+});
+
+
 const sessionOptions = session({
+    store,
     secret:process.env.SECRET,
     resave: false,
     saveUninitialized: true,

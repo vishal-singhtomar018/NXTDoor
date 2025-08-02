@@ -540,7 +540,7 @@ input#name {
     background-attachment: initial;
     background-origin: initial;
     background-clip: initial;
-    background-color: rgb(51, 51, 51);
+    background-color:#FAF7F3;
     padding-top: 10px;
     padding-right: 20px;
     padding-bottom: 10px;
@@ -582,7 +582,7 @@ input#name {
     font-size: 40px;
     line-height: 64px;
     font-weight: 900;
-    color: #00B2EB;
+    color: #D9A299;;
     margin-top: 0px;
     margin-right: 0px;
     margin-bottom: 40px;

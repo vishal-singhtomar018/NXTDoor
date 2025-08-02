@@ -1,200 +1,139 @@
 <% layout('/layouts/boilerplate') %>
-  <div class="row">
-    <div class="col-8 offset-2">
 
-      <body>
-        <h3 style="color: #fe424d; padding-top: 2rem;">Create A New Listing</h3><br>
-        <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-8 offset-2">
+    <h3 style="color: #fe424d; padding-top: 2rem; margin-top: 40px;">Create A New Listing</h3>
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
 
-          <div class="row">
-            <div class="col-md-6">
-              <label for="title"><b>Title</b></label>
-              <input type="text" name="listing[title]" placeholder="Enter title" class="form-control" required>
-            </div>
-            <div class="valid-feedback">Title looks good</div>
-            <div class="col-md-6">
-              <label for="price"><b>Price</b></label>
-              <input type="number" name="listing[price]" placeholder="Enter price" class="form-control" required
-                min="0">
-              <div class="invalid-feedback">Enter a valid price</div>
-            </div>
-          </div><br>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="title"><b>Title</b></label>
+          <input type="text" name="listing[title]" placeholder="Enter title" class="form-control" required>
+          <div class="valid-feedback">Title looks good</div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="price"><b>Price</b></label>
+          <input type="number" name="listing[price]" placeholder="Enter price" class="form-control" required min="0">
+          <div class="invalid-feedback">Enter a valid price</div>
+        </div>
+      </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <label for="city"><b>City</b></label>
-              <input type="text" name="listing[place]" placeholder="Enter City" class="form-control" required>
-            </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="city"><b>City</b></label>
+          <input type="text" name="listing[place]" placeholder="Enter City" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="location"><b>Location</b></label>
+          <input type="text" name="listing[location]" placeholder="Enter location" class="form-control" required>
+        </div>
+      </div>
 
-            <div class="col-md-6">
-              <label for="location"><b>Location</b></label>
-              <input type="text" name="listing[location]" placeholder="Enter location" class="form-control" required>
-            </div>
-          </div><br>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="country"><b>Country</b></label>
+          <input type="text" name="listing[country]" placeholder="Add country" class="form-control" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="contact"><b>Contact Info</b></label>
+          <input type="text" name="listing[contact]" pattern="[1-9]{1}[0-9]{9}" placeholder="Enter contact number"
+            class="form-control" required>
+        </div>
+      </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <label for="country"><b>Country</b></label>
-              <input type="text" name="listing[country]" placeholder="Add country" class="form-control" required>
-            </div>
+      <div class="mb-3">
+        <label for="description"><b>Description</b></label>
+        <textarea name="listing[description]" placeholder="Enter description" class="form-control" required></textarea>
+      </div>
 
-            <div class="col-md-6">
-              <label for="contact"><b>Contact Info</b></label>
-              <input type="text" name="listing[contact]" pattern="[1-9]{1}[0-9]{9}" placeholder="Enter contact number"
-                class="form-control" required>
-            </div>
-          </div><br>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="Maxpeople"><b>Max people</b></label>
+          <input type="number" name="listing[Maxpeople]" placeholder="Enter Limit" class="form-control" required min="0">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="Bathrooms"><b>Bathrooms</b></label>
+          <input type="number" name="listing[Bathrooms]" placeholder="Enter Limit" class="form-control" required min="0">
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="Bedrooms"><b>Bedrooms</b></label>
+          <input type="number" name="listing[Bedrooms]" placeholder="Enter Limit" class="form-control" required min="0">
+        </div>
+      </div>
 
-          <label for="description"><b>Description</b></label>
-          <textarea name="listing[description]" placeholder="Enter description" class="form-control"
-            required></textarea><br>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label><b>Living Room</b></label>
+          <input type="file" name="images" class="form-control" accept="image/*" required>
+          <input type="hidden" name="imageLabels" value="Living Room">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label><b>Kitchen</b></label>
+          <input type="file" name="images" class="form-control" accept="image/*">
+          <input type="hidden" name="imageLabels" value="Kitchen">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label><b>Bedroom</b></label>
+          <input type="file" name="images" class="form-control" accept="image/*">
+          <input type="hidden" name="imageLabels" value="Bedroom">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label><b>Dining Room</b></label>
+          <input type="file" name="images" class="form-control" accept="image/*">
+          <input type="hidden" name="imageLabels" value="Dining Room">
+        </div>
+      </div>
 
-          <div class="row">
-            <div class="col-md-6">
-              <label for="Maxpeople"><b>Max people</b></label>
-              <input type="number" name="listing[Maxpeople]" placeholder="Enter Limit" class="form-control" required
-                min="0">
-            </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label><b>Amenities</b></label><br>
+          <div class="form-check">
+            <input type="checkbox" id="petFriendly" name="listing[amenities][petFriendly]" value="true" class="form-check-input">
+            <label for="petFriendly" class="form-check-label">Pet Friendly</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="wifi" name="listing[amenities][wifi]" value="true" class="form-check-input">
+            <label for="wifi" class="form-check-label">Wi-Fi</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="parking" name="listing[amenities][parking]" value="true" class="form-check-input">
+            <label for="parking" class="form-check-label">Parking</label>
+          </div>
+        </div>
 
-            <div class="col-md-6">
-              <label for="Bathrooms"><b>Bathrooms</b></label>
-              <input type="number" name="listing[Bathrooms]" placeholder="Enter Limit" class="form-control" required
-                min="0">
-            </div><br><br><br><br>
+        <div class="col-md-6 mb-3">
+          <label>&nbsp;</label><br>
+          <div class="form-check">
+            <input type="checkbox" id="furnished" name="listing[amenities][furnished]" value="true" class="form-check-input">
+            <label for="furnished" class="form-check-label">Furnished</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="kitchen" name="listing[amenities][kitchen]" value="true" class="form-check-input">
+            <label for="kitchen" class="form-check-label">Kitchen</label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" id="bachelors" name="listing[amenities][bachelors]" value="true" class="form-check-input">
+            <label for="bachelors" class="form-check-label">Bachelors</label>
+          </div>
+        </div>
+      </div>
 
-            <div class="col-md-6">
-              <label for="Bedrooms"><b> Bedrooms</b></label>
-              <input type="number" name="listing[Bedrooms]" placeholder="Enter Limit" class="form-control" required
-                min="0">
-            </div>
-          </div><br>
+      <div class="mb-3">
+        <label for="Type"><b>Type</b></label>
+        <select name="listings[Type]" id="Type" class="form-control" required>
+          <option value="">Select Type</option>
+          <option value="Apartment">Apartment</option>
+          <option value="House">House</option>
+          <option value="Shared Room">Shared Room</option>
+          <option value="Studio">Studio</option>
+        </select>
+      </div>
 
-
-          <div class="row">
-            <div class="mb-3 col-md-6">
-              <label><b>Living Room</b></label>
-              <input type="file" name="images" class="form-control" accept="image/*" required>
-              <input type="hidden" name="imageLabels" value="Living Room">
-            </div>
-
-            <div class="mb-3 col-md-6">
-              <label><b>Kitchen</b></label>
-              <input type="file" name="images" class="form-control" accept="image/*">
-              <input type="hidden" name="imageLabels" value="Kitchen">
-            </div>
-            <div class="mb-3 col-md-6">
-              <label><b>Bedroom</b></label>
-              <input type="file" name="images" class="form-control" accept="image/*">
-              <input type="hidden" name="imageLabels" value="Bedroom">
-            </div>
-
-            <div class="mb-3 col-md-6">
-              <label><b>Dining Room</b></label>
-              <input type="file" name="images" class="form-control" accept="image/*">
-              <input type="hidden" name="imageLabels" value="Dining Room">
-            </div>
-
-
-            <div class="row">
-              <div class="col-md-6">
-                <label><b>Amenities</b></label><br>
-                <div class="form-check">
-                  <input type="checkbox" id="petFriendly" name="listing[amenities][petFriendly]" value="true"
-                    class="form-check-input">
-                  <label for="petFriendly" class="form-check-label">Pet Friendly</label>
-                </div>
-
-                <div class="form-check">
-                  <input type="checkbox" id="wifi" name="listing[amenities][wifi]" value="true"
-                    class="form-check-input">
-                  <label for="wifi" class="form-check-label">Wi-Fi</label>
-                </div>
-
-                <div class="form-check">
-                  <input type="checkbox" id="parking" name="listing[amenities][parking]" value="true"
-                    class="form-check-input">
-                  <label for="parking" class="form-check-label">Parking</label>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <br>
-                <div class="form-check">
-                  <input type="checkbox" id="furnished" name="listing[amenities][furnished]" value="true"
-                    class="form-check-input">
-                  <label for="furnished" class="form-check-label">Furnished</label>
-                </div>
-
-                <div class="form-check">
-                  <input type="checkbox" id="kitchen" name="listing[amenities][kitchen]" value="true"
-                    class="form-check-input">
-                  <label for="kitchen" class="form-check-label">Kitchen</label>
-                </div>
-
-                <div class="form-check">
-                  <input type="checkbox" id="bachelors" name="listing[amenities][bachelors]" value="true"
-                    class="form-check-input">
-                  <label for="bachelors" class="form-check-label">Bachelors</label>
-                </div>
-              </div>
-            </div><br><br><br>
-
-            <label for="Type"><b>Type</b></label><br>
-            <select name="listings[Type]" id="Type" class="form-control" required>
-              <option value="">Select Type</option>
-              <option value="1BHK">Apartment</option>
-              <option value="2BHK">House</option>
-              <option value="3BHK">Shared Room</option>
-              <option value="Large">Studio</option>
-            </select><br>
-            <button class="btn btn-dark edit-btn">ADD</button>
-        </form>
-        <script>
-          const form = document.querySelector("form");
-          const fileInput = document.querySelector("input[name='listing[images]']");
-
-          form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const files = Array.from(fileInput.files);
-            const compressedFiles = [];
-
-            for (const file of files) {
-              try {
-                const compressed = await imageCompression(file, {
-                  maxSizeMB: 1,
-                  maxWidthOrHeight: 1280,
-                  useWebWorker: true
-                });
-                compressedFiles.push(compressed);
-              } catch (error) {
-                console.error("Compression error:", error);
-              }
-            }
-
-            const formData = new FormData(form);
-            formData.delete("listing[images]"); // Remove original files
-
-            compressedFiles.forEach(file => {
-              formData.append("images", file); // Append compressed images
-            });
-
-            // Send the form via fetch
-            const res = await fetch("/listings", {
-              method: "POST",
-              body: formData,
-            });
-
-            if (res.redirected) {
-              window.location.href = res.url;
-            } else {
-              const result = await res.text();
-              console.log("Upload result:", result);
-            }
-          });
-        </script>
-        <script
-          src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
-      </body>
-    </div>
+      <button class="btn btn-dark edit-btn mb-4">ADD</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.1/dist/browser-image-compression.js"></script>
   </div>
+</div>
+
+<!-- Footer -->
+

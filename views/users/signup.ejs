@@ -1,43 +1,94 @@
 <% layout('/layouts/boilerplate') %>
+
 <div class="signupbox">
-   <div class="row mt-4 ">
-    <h1 class="col-6 offset-3 ">Signup on GlobalGateway</h1>
-    <div class="col-6 offset-3">
-        <form action="/signup" method="POST" novalidate class="needs-validation">
-         <div class="mb-3">
-            <label for="username" class="form-lable"><b>Username</b></label><br>
-            <input 
-            type="text"
-             placeholder="Enter Username" 
-             class="form-control"  
-             id="username"
-             name="username"
-             required><br>
-            <div  class="valid-feedback">looks good</div>
-         </div >
-         <div class="mb-3">
-            <label for="email" class="form-lable"><b>Email</b></label><br>
-            <input
-            type="email" 
-            placeholder="Enter Email"
-            class="form-control"  
-            name="email"
-            id="email" 
-            required><br>
-            <div  class="valid-feedback">Enter Valid Email</div>
-         </div>
-         <div class="mb-3">
-            <label for="password" class="form-lable"><b>Password</b></label><br>
-            <input type="password"
-            placeholder="Enter Password"
-            class="form-control" 
-            id="password"
-            name="password"
-            required><br>
+  <section class="min-vh-100 d-flex align-items-center" style="background-color: #c18b97;">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow-lg" style="border-radius: 1rem;">
+            <div class="row g-0">
+
+              <!-- Image Column -->
+              <div class="col-md-6 d-none d-md-block">
+                <img src="/images/wodden.jpg"
+                     alt="signup form"
+                     class="img-fluid h-100 w-100"
+                     style="object-fit: cover; border-radius: 1rem 0 0 1rem;" />
+              </div>
+
+              <!-- Form Column -->
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body p-4 p-md-5 text-black w-100">
+
+                  <form action="/signup" method="POST" novalidate class="needs-validation">
+
+                    <div class="d-flex align-items-center mb-3">
+                      <img src="/images/logo2.png" alt="" style="width: 50px; height: 50px; border-radius: 50%;">&nbsp;&nbsp;
+                      <span class="h1 fw-bold mb-0">NXTDoor</span>
+                    </div>
+
+                    <h5 class="fw-normal mb-3" style="letter-spacing: 1px;">Create your account</h5>
+
+                    <!-- Username -->
+                    <div class="form-outline mb-4">
+                      <label for="username" class="form-label"><b>Username</b></label>
+                      <input type="text"
+                             id="username"
+                             name="username"
+                             placeholder="Enter Username"
+                             class="form-control"
+                             required />
+                      <div class="valid-feedback">Looks good</div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-outline mb-4">
+                      <label for="email" class="form-label"><b>Email</b></label>
+                      <input type="email"
+                             id="email"
+                             name="email"
+                             placeholder="Enter Email"
+                             class="form-control"
+                             required />
+                      <div class="valid-feedback">Enter a valid email</div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-outline mb-4">
+                      <label for="password" class="form-label"><b>Password</b></label>
+                      <input type="password"
+                             id="password"
+                             name="password"
+                             placeholder="Enter Password"
+                             class="form-control"
+                             required />
+                    </div>
+
+                    <!-- Signup Button -->
+                    <div class="pt-1 mb-4">
+                      <button class="btn btn-success btn-lg w-100" type="submit">Signup</button>
+                    </div>
+                  </form>
+
+                  <!-- Footer Links -->
+                  <div class="text-center">
+                    <p class="mb-2">Already have an account? 
+                      <a href="/login" class="text-decoration-none" style="color: #393f81;">
+                        Login <i class="fa-solid fa-right-to-bracket"></i>
+                      </a>
+                    </p>
+                    <a href="#!" class="small text-muted me-2 text-decoration-none">Terms of use</a>
+                    <a href="#!" class="small text-muted text-decoration-none">Privacy policy</a>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End Form Column -->
+
+            </div>
           </div>
-          <button class="btn btn-success" type="submit">Signup</button><br><br>
-          <a class="Account" href="/login" class="small text-muted">Have an account &nbsp;<i class="fa-solid fa-right-to-bracket"></i></a>
-        </form>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 </div>

@@ -61,7 +61,7 @@ module.exports.Createnewlisting = async (req, res, next) => {
     await newListing.save();
 
     req.flash("success", "Added");
-    res.redirect("/explore");
+    res.redirect("/listings/explore");
   } catch (err) {
     next(err);
   }
@@ -167,7 +167,7 @@ module.exports.submit = async (req, res) => {
     // Check if there are any listings found
     if (allListings.length === 0) {
       req.flash("error", "No data found");
-      return res.redirect("/explore"); // or any route you want to show the flash message
+      return res.redirect("/listings/explore"); // or any route you want to show the flash message
     } else {
       res.render("listings/search.ejs", { allListings });
     }

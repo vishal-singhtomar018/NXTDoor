@@ -1,81 +1,69 @@
 <% layout('/layouts/boilerplate') %>
 
- <div class="container mt-4">
+<div class="container mt-4">
+  <!-- Filter Bar -->
   <div class="filter-bar">
-      <!-- Rent Type -->
-      <div class="dropdown">
-          <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i class="bi bi-chevron-down"></i></button>
-          <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Rent</a></li>
-              <li><a class="dropdown-item" href="#">Lease</a></li>
-          </ul>
-      </div>
+    <!-- Rent Type -->
+    <div class="dropdown">
+      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i class="bi bi-chevron-down"></i></button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Rent</a></li>
+        <li><a class="dropdown-item" href="#">Lease</a></li>
+      </ul>
+    </div>
 
-      <!-- City -->
-<!-- City Dropdown -->
-<div class="dropdown">
-  <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i class="bi bi-chevron-down"></i></button>
-  <ul class="dropdown-menu" id="city-filter">
-      <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
-      <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
-      <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
-  </ul>
-</div>
+    <!-- City Dropdown -->
+    <div class="dropdown">
+      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i class="bi bi-chevron-down"></i></button>
+      <ul class="dropdown-menu" id="city-filter">
+        <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
+        <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
+        <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
+      </ul>
+    </div>
 
-<!-- Price Dropdown -->
-<div class="dropdown">
-  <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i class="bi bi-chevron-down"></i></button>
-  <ul class="dropdown-menu" id="priceFilter">
-      <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
-      <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
-      <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
-  </ul>
-</div>
+    <!-- Price Dropdown -->
+    <div class="dropdown">
+      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i class="bi bi-chevron-down"></i></button>
+      <ul class="dropdown-menu" id="priceFilter">
+        <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
+        <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
+        <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
+      </ul>
+    </div>
 
-      
+    <!-- Amenities -->
+    <div class="dropdown">
+      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i class="bi bi-chevron-down"></i></button>
+      <ul class="dropdown-menu">
+        <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
+        <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
+        <li><label class="dropdown-item"><input type="checkbox"> Pet Friendly</label></li>
+      </ul>
+    </div>
 
-      <!-- Amenities -->
-      <div class="dropdown">
-          <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i class="bi bi-chevron-down"></i></button>
-          <ul class="dropdown-menu">
-              <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
-              <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
-              <li><label class="dropdown-item"><input type="checkbox"> petFriendly</label></li>
-          </ul>
-      </div>
+    <!-- Selected Filters -->
+    <div class="filter-item">Flat +1 <i class="bi bi-x"></i></div>
+    <div class="filter-item">1 BHK <i class="bi bi-x"></i></div>
 
-      <!-- Selected Filters -->
-      <div class="filter-item"> Flat +1 <i class="bi bi-x"></i> </div>
-      <div class="filter-item"> 1 BHK <i class="bi bi-x"></i> </div>
-
-      <!-- More Filters -->
-      <div class="dropdown">
-          <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
-              <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
-          </button>
-          <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Furnished</a></li>
-              <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
-              <li><a class="dropdown-item" href="#">Bachelors</a></li>
-          </ul>
-      </div>
+    <!-- More Filters -->
+    <div class="dropdown">
+      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
+        <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Furnished</a></li>
+        <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
+        <li><a class="dropdown-item" href="#">Bachelors</a></li>
+      </ul>
+    </div>
   </div>
 </div>
+
 <link rel="icon" href="/images/global-warming-1494965_1280.jpg" type="image/png">
 
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
-.mySlides {display: none}
-</style>
-<!-- Overlay effect when opening sidebar on small screens -->
-<!-- <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div> -->
-
-<!-- !PAGE CONTENT! -->
-
 <div class="container my-5">
-
-  <!-- Title -->
-  <h2 class="text-success mb-4"><%=listing.title%></h2>
+  <h2 class="text-success mb-4"><%= listing.title %></h2>
 
   <!-- Main Image + Thumbnails -->
   <div class="main-image-wrapper">
@@ -86,13 +74,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       </div>
     </div>
 
-    <!-- Thumbnails -->
     <div class="row gx-2 gy-2 justify-content-start">
       <% listing.images.forEach((img) => { %>
         <div class="col-4 col-md-2">
           <img src="<%= img.url %>" class="img-thumbnail"
-            style="height: 100px; object-fit: cover; cursor: pointer;"
-            onclick="changeImage('<%= img.url %>', '<%= img.label || 'Apartment' %>')">
+               style="height: 100px; object-fit: cover; cursor: pointer;"
+               onclick="changeImage('<%= img.url %>', '<%= img.label || 'Apartment' %>')">
         </div>
       <% }) %>
     </div>
@@ -120,7 +107,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p><i class="fas fa-map-marked-alt"></i> City: <%= listing.place %></p>
     </div>
   </div>
-  
+
   <hr />
   <h5>Amenities</h5>
   <div class="row">
@@ -154,13 +141,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <h5>Rules</h5>
   <ul>
     <li><strong>Respect the Property</strong> – Maintain cleanliness and avoid damage.</li>
-    <li><strong>No Illegal Activities</strong>-Strictly prohibited within the premises.</li>
+    <li><strong>No Illegal Activities</strong> - Strictly prohibited within the premises.</li>
     <li><strong>Pet Policy</strong> – Allowed only if specified.</li>
     <li><strong>Use of Amenities</strong> – Keep common areas clean.</li>
-    <li><strong>Respect Neighbors</strong>-Avoid conflicts and maintain a friendly environment.</li>
+    <li><strong>Respect Neighbors</strong> - Avoid conflicts and maintain a friendly environment.</li>
   </ul>
 
-  <% if(currUser && currUser._id.equals(listing.owner._id)){ %>
+  <% if(currUser && currUser._id.toString() === listing.owner._id.toString()) { %>
     <div class="d-flex gap-3 my-4">
       <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
       <form method="post" action="/listings/<%= listing._id %>?_method=delete">
@@ -171,61 +158,60 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
   <!-- Review Section -->
   <hr />
-  <div>
-    <h4>Leave a Review</h4>
-    <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate>
-      <div class="mb-3">
-        <label class="form-label"><strong>Rating</strong></label>
-        <fieldset class="starability-slot">
-          <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
-          <% for (let i = 1; i <= 5; i++) { %>
-            <input type="radio" id="rate<%= i %>" name="review[rating]" value="<%= i %>" />
-            <label for="rate<%= i %>" title="<%= i %> stars"><%= i %> star</label>
-          <% } %>
-        </fieldset>
-      </div>
-      <div class="mb-3">
-        <label for="Comment" class="form-label"><strong>Comments</strong></label>
-        <textarea name="review[Comment]" id="Comment" class="form-control" rows="4" required></textarea>
-        <div class="invalid-feedback">Please provide valid comments.</div>
-      </div>
-      <button class="btn btn-outline-dark">Submit</button>
-    </form>
+  <% if(currUser) { %>
+    <div>
+      <h4>Leave a Review</h4>
+      <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate>
+        <div class="mb-3">
+          <label class="form-label"><strong>Rating</strong></label>
+          <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+            <% for (let i = 1; i <= 5; i++) { %>
+              <input type="radio" id="rate<%= i %>" name="review[rating]" value="<%= i %>" />
+              <label for="rate<%= i %>" title="<%= i %> stars"><%= i %> star</label>
+            <% } %>
+          </fieldset>
+        </div>
+        <div class="mb-3">
+          <label for="Comment" class="form-label"><strong>Comments</strong></label>
+          <textarea name="review[Comment]" id="Comment" class="form-control" rows="4" required></textarea>
+          <div class="invalid-feedback">Please provide valid comments.</div>
+        </div>
+        <button class="btn btn-outline-dark">Submit</button>
+      </form>
+    </div>
+  <% } else { %>
+    <p class="text-muted">Please <a href="/login">log in</a> to leave a review.</p>
+  <% } %>
 
-    <% if(listing.reviews.length > 0) { %>
-      <hr />
-      <h5>All Reviews</h5>
-      <div class="row">
-        <% for (review of listing.reviews) { %>
-          <div class="col-md-6 mb-3">
-            <div class="review-card">
-              <h6><i class="bi bi-person-fill"></i> <%= review.author.username %></h6>
-            
-              <div class="review-stars">
-                <p class="starability-result" data-rating="<%= review.rating %>"></p>
-              </div>
-            
-              <p class="review-comment">"<%= review.Comment %>"</p>
-            
-              <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
-                <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" method="POST">
-                  <button class="btn btn-sm btn-remove">Remove</button>
-                </form>
-              <% } %>
+  <% if(listing.reviews.length > 0) { %>
+    <hr />
+    <h5>All Reviews</h5>
+    <div class="row">
+      <% for (review of listing.reviews) { %>
+        <div class="col-md-6 mb-3">
+          <div class="review-card">
+            <h6><i class="bi bi-person-fill"></i> <%= review.author.username %></h6>
+            <div class="review-stars">
+              <p class="starability-result" data-rating="<%= review.rating %>"></p>
             </div>
+            <p class="review-comment">"<%= review.Comment %>"</p>
+            <% if(currUser && currUser._id.toString() === review.author._id.toString()) { %>
+              <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" method="POST">
+                <button class="btn btn-sm btn-remove">Remove</button>
+              </form>
+            <% } %>
           </div>
-        <% } %>
-      </div>
-    <% } %>
-  </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script>
   function changeImage(url, label) {
     document.getElementById("mainImage").src = url;
     document.getElementById("imageLabel").innerText = label;
   }
 </script>
-
-

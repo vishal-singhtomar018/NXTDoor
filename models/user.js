@@ -13,7 +13,7 @@ const userSchema = new Schema({
         parking: Boolean,
         kitchen:Boolean,
         bachelors:Boolean,
-        furnished: Boolean,
+        furnished: Boolean, 
     },
 });
 

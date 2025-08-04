@@ -1,10 +1,12 @@
 <link rel="stylesheet" href="/css/style.css">
 <nav class="navbar bg-body-tertiary fixed-top border-bottom">
   <div class="container-fluid">
-    
-    <a class="navbar-brand" href="/listings"><img src="/images/logo2.png" alt="" style="width: 40px; height: 40px; border-radius: 50%;"></a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/listings"><img src="/images/logo2.png" alt=""
+        style="width: 40px; height: 40px; border-radius: 50%;"></a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -20,7 +22,7 @@
             <a class="nav-link" href="/listings">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/explore">Explore</a>
+            <a class="nav-link" href="/listings/explore">Explore</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/listings/new">Add listings 🗂️</a>
@@ -36,27 +38,29 @@
             <li class="nav-item">
               <a class="nav-link" href="/login"><b>Login</b></a>
             </li>
-          <% } %>
-          <% if (currUser) { %>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
-            </li>
-          <% } %>
+            <% } %>
+              <% if (currUser) { %>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                </li>
+                <% } %>
         </ul>
 
         <!-- Search Form -->
-        <form class="d-flex mt-3" role="search" action="/listings/submit" method="post">
-          <input class="form-control me-2 search-input" type="text" name="title" placeholder="Search destinations" aria-label="Search" autocomplete="off">
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-        </form>
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex needs-validation" method="post" role="search" action="/submit"  novalidate >
+            <label for="title"></label>
+            <input class="form-control me-2 search-input" placeholder="Search destinations" type="text" id="title"
+              name="title" aria-label="Search" autocomplete="off" required>
+            <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div>
 
         <!-- Google Translate Element -->
         <div class="mt-3" id="google_translate_element"></div>
         <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script src="/GlobalGateway/public/js/script.js"></script>
       </div>
     </div>
   </div>
 </nav>
-
-
-

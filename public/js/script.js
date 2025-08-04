@@ -103,45 +103,45 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-const form = document.querySelector("form");
-const fileInput = document.querySelector("input[name='listing[images]']");
+// const form = document.querySelector("form");
+// const fileInput = document.querySelector("input[name='listing[images]']");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+// form.addEventListener("submit", async (e) => {
+//   e.preventDefault();
 
-  const files = Array.from(fileInput.files);
-  const compressedFiles = [];
+//   const files = Array.from(fileInput.files);
+//   const compressedFiles = [];
 
-  for (const file of files) {
-    try {
-      const compressed = await imageCompression(file, {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1280,
-        useWebWorker: true,
-      });
-      compressedFiles.push(compressed);
-    } catch (error) {
-      console.error("Compression error:", error);
-    }
-  }
+//   for (const file of files) {
+//     try {
+//       const compressed = await imageCompression(file, {
+//         maxSizeMB: 1,
+//         maxWidthOrHeight: 1280,
+//         useWebWorker: true,
+//       });
+//       compressedFiles.push(compressed);
+//     } catch (error) {
+//       console.error("Compression error:", error);
+//     }
+//   }
 
-  const formData = new FormData(form);
-  formData.delete("listing[images]"); // Remove original files
+//   const formData = new FormData(form);
+//   formData.delete("listing[images]"); // Remove original files
 
-  compressedFiles.forEach((file) => {
-    formData.append("images", file); // Append compressed images
-  });
+//   compressedFiles.forEach((file) => {
+//     formData.append("images", file); // Append compressed images
+//   });
 
-  // Send the form via fetch
-  const res = await fetch("/listings", {
-    method: "POST",
-    body: formData,
-  });
+//   // Send the form via fetch
+//   const res = await fetch("/listings", {
+//     method: "POST",
+//     body: formData,
+//   });
 
-  if (res.redirected) {
-    window.location.href = res.url;
-  } else {
-    const result = await res.text();
-    console.log("Upload result:", result);
-  }
-});
+//   if (res.redirected) {
+//     window.location.href = res.url;
+//   } else {
+//     const result = await res.text();
+//     console.log("Upload result:", result);
+//   }
+// });

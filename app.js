@@ -34,9 +34,10 @@ const UserRoute=require("./routes/user.js");
 const signup=require("./routes/signup.js");
 const listings =require("./routes/listing.js");
 const Reviews=require("./routes/review.js");
-const Listing=require("./models/listing");
 const explore=require("./routes/explore.js")
-const search=require("./routes/matchingRoutes.js");
+const FilterSearch=require("./routes/matchingRoutes.js");
+const ListingSearch=require("./routes/listingsearch.js");
+
 
 
 const store = MongoStore.create({
@@ -112,18 +113,56 @@ app.get('/', (req, res) => {
   res.redirect('/listings');
 });
 
+
 app.use("/",explore);
+app.use("/",ListingSearch);
 app.use("/listings",listings);
 app.use("", UserRoute);
 app.use("/listings",Reviews);
 app.use("/",signup);
-app.use("/search",search);
+app.use("/search",FilterSearch);
+
 
 
 app.use("/about",(req,res)=>
 {
     res.render("listings/about.ejs")
 })
+
+
+// app.post('/submit', async (req, res) => {
+//     try {
+//         // Ensure the title exists, convert to string and trim spaces
+//         let countryInput = String(req.body.title || '').trim();  // Convert to string, handle undefined/null
+        
+//         // Remove unnecessary spaces between words
+//         countryInput = countryInput.replace(/\s+/g, ' ');  // Replace multiple spaces with single space
+
+//         // Get the city name (country) from the form input
+//         const cityName = countryInput;
+
+//         // Check if the cityName is not empty
+//         if (!cityName) {
+//             return res.send("Please provide a valid country name.");
+//         }
+
+//         // Perform case-insensitive search using $regex
+//         const allListings = await Listing.find({ location: { $regex: cityName, $options: 'i' } });
+
+//         // Check if there are any listings found
+//         if (allListings.length === 0) {
+//             res.send("No data found for this");
+//         } else {
+//             res.render("listings/Searchresult.ejs", { allListings });
+//         }
+//     } catch (error) {
+//         console.error("Error while fetching listings:", error);
+//         res.status(500).send("An error occurred while processing your request.");
+//     }
+// });
+
+
+
 
 app.all("*",(req,res,next)=>
 {

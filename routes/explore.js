@@ -4,6 +4,6 @@ const listingController=require("../controllers/listing.js");
 
 
 
-router.get("/explore",listingController.explore);
+router.get("/listings/explore",listingController.explore);
 
 module.exports=router;

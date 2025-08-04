@@ -67,6 +67,7 @@ module.exports.Createnewlisting = async (req, res, next) => {
   }
 };
 
+
 module.exports.showlistings = async (req, res, next) => {
   try {
     let { id } = req.params;

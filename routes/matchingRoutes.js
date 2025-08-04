@@ -1,10 +1,12 @@
 const express=require("express");
 const router=express.Router({caseSensitive: false});
-const SearchController=require("../controllers/matchingController");
+const FilterController=require("../controllers/matchingController");
+// const SearchController=require("../controllers/Search")
 
 
 
-router.get("/",SearchController.FilterSearch);
+router.get("/",FilterController.FilterSearch);
+// router.post("listings/submit",SearchController.submit);
 
 module.exports=router;
 

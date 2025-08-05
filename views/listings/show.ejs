@@ -158,7 +158,7 @@
 
   <!-- Review Section -->
   <hr />
-  <% if(currUser) { %>
+
     <div>
       <h4>Leave a Review</h4>
       <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate>
@@ -180,9 +180,6 @@
         <button class="btn btn-outline-dark">Submit</button>
       </form>
     </div>
-  <% } else { %>
-    <p class="text-muted">Please <a href="/login">log in</a> to leave a review.</p>
-  <% } %>
 
   <% if(listing.reviews.length > 0) { %>
     <hr />

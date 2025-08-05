@@ -1,28 +1,37 @@
-const express=require("express");
-const router=express.Router();
-const User=require("../models/user.js")
-const passport=require("passport");
-const {saveRedirectUrl}=require("../middleware.js");
-const userController=require("../controllers/user.js");
+const express = require("express");
+const router = express.Router();
+const passport = require("passport");
+const userController = require("../controllers/user.js");
 
-router.get("/signup",userController.rendersignup);
+// Show signup/login forms and sign up handler
+router.get("/signup", userController.rendersignup);
+router.post("/signup", userController.signup);
+router.get("/login", userController.renderlogin);
 
-router.post("/signup",userController.signup);
-
-router.get("/login",userController.renderlogin)
-
-
-
+// Login POST: preserve returnTo before passport runs, use successReturnToOrRedirect,
+// and fall back to userController.login (not authController)
 router.post(
-    "/login",
-    saveRedirectUrl,
-    passport.authenticate("local", {
-      failureRedirect: "/login",
-      failureFlash: true,
-    }),
-    userController.login    
-  );
-  
-router.get("/logout",userController.logout);
+  "/login",
+  (req, res, next) => {
+    console.log("👉 Pre-auth session.returnTo =", req.session && req.session.returnTo);
+    if (req.session && req.session.returnTo) {
+      req.session.redirectToAfterLogin = req.session.returnTo;
+      return req.session.save(err => {
+        if (err) console.error("❌ session save error (pre-auth preserve):", err);
+        next();
+      });
+    }
+    next();
+  },
+  passport.authenticate("local", {
+    failureFlash: true,
+    failureRedirect: "/login",
+    successReturnToOrRedirect: "/listings"
+  }),
+  // Fallback (rare). Use userController.login, not authController.
+  userController.login
+);
 
-module.exports=router;
+router.get("/logout", userController.logout);
+
+module.exports = router;

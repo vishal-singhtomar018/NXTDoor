@@ -1,6 +1,6 @@
 const User=require("../models/user.js")
 const passport=require("passport");
-const {saveRedirectUrl}=require("../middleware.js");
+// const {saveRedirectUrl}=require("../middleware.js");
 const userController=require("../controllers/user.js");
 
 
@@ -38,15 +38,28 @@ module.exports.renderlogin=(req,res)=>
 
 // controllers/user.js
 module.exports.login = (req, res) => {
-    req.flash("success", "Welcome back!");
+  // This controller is a safe fallback: if Passport did not auto-redirect,
+  // we will handle the redirect here. It prefers req.session.returnTo.
+  req.flash("success", "Welcome back!");
 
-    console.log("➡️ Redirect URL in session:", req.session.returnTo);
+  // Prefer any preserved redirect (some flows might use redirectToAfterLogin)
+  const redirectUrl = (req.session && (req.session.redirectToAfterLogin || req.session.returnTo)) || "/listings";
+  console.log(`➡️ Redirecting to: ${redirectUrl}`);
 
-    const redirectUrl = req.session.returnTo || "/listings";
+  // Clean up session keys
+  if (req.session) {
+    delete req.session.redirectToAfterLogin;
     delete req.session.returnTo;
-
-    res.redirect(redirectUrl);
+    // Save cleanup (best-effort)
+    req.session.save(err => {
+      if (err) console.error("❌ Session save error while cleaning up:", err);
+      return res.redirect(redirectUrl);
+    });
+  } else {
+    return res.redirect(redirectUrl);
+  }
 };
+
 
 
 

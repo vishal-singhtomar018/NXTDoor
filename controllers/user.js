@@ -1,75 +1,53 @@
-const User=require("../models/user.js")
-const passport=require("passport");
-// const {saveRedirectUrl}=require("../middleware.js");
-const userController=require("../controllers/user.js");
+// controllers/user.js
+const User = require("../models/user"); // adjust if model path differs
+const passport = require("passport");
 
-
-module.exports.rendersignup=(req,res)=>
-{
-    res.render("users/signup.ejs");
-}
-
-module.exports.signup=async(req,res)=>{
-    try{
-        let{username,email,password}=req.body;
-        const newUser=new User({email,username});
-        const  registerdUser=await User.register(newUser,password);
-        // console.log(registerdUser);
-        req.login(registerdUser,(err)=>
-        {
-            if(err)
-            {
-                return next(err)
-            }
-            req.flash("success","Welcome To Your Home");
-            res.redirect("/listings");
-        });
-    }
-    catch(err){
-        req.flash("error",err.message);
-        res.redirect("/signup");
-    }
+module.exports.rendersignup = (req, res) => {
+  res.render("users/signup"); // adjust view path
 };
 
-module.exports.renderlogin=(req,res)=>
-{
-    res.render("users/login.ejs");
-}
-
-// controllers/user.js
-module.exports.login = (req, res) => {
-  // This controller is a safe fallback: if Passport did not auto-redirect,
-  // we will handle the redirect here. It prefers req.session.returnTo.
-  req.flash("success", "Welcome back!");
-
-  // Prefer any preserved redirect (some flows might use redirectToAfterLogin)
-  const redirectUrl = (req.session && (req.session.redirectToAfterLogin || req.session.returnTo)) || "/listings";
-  console.log(`➡️ Redirecting to: ${redirectUrl}`);
-
-  // Clean up session keys
-  if (req.session) {
-    delete req.session.redirectToAfterLogin;
-    delete req.session.returnTo;
-    // Save cleanup (best-effort)
-    req.session.save(err => {
-      if (err) console.error("❌ Session save error while cleaning up:", err);
-      return res.redirect(redirectUrl);
+module.exports.signup = async (req, res, next) => {
+  try {
+    const { username, email, password } = req.body;
+    const user = new User({ username, email });
+    const registeredUser = await User.register(user, password); // if using passport-local-mongoose
+    req.login(registeredUser, err => {
+      if (err) return next(err);
+      req.flash("success", "Welcome! Your account has been created.");
+      return res.redirect("/listings");
     });
-  } else {
-    return res.redirect(redirectUrl);
+  } catch (e) {
+    req.flash("error", e.message || "Something went wrong.");
+    return res.redirect("/signup");
   }
 };
 
+module.exports.renderlogin = (req, res) => {
+  res.render("users/login"); // adjust view path
+};
 
+// Fallback login controller (used if passport doesn't auto-redirect)
+module.exports.login = (req, res) => {
+  req.flash("success", "Welcome back!");
 
+  const redirectUrl = (req.session && req.session.returnTo) || "/listings";
+  console.log(`➡️ Redirecting to: ${redirectUrl}`);
 
-module.exports.logout=(req,res,next)=>
-{   
-    req.logout((err)=> {
-    if(err){
-       return next(err);
-    }
-    req.flash("success","Hope you like this ,Please Re visit again");
+  // Clean up and persist session then redirect
+  if (req.session) {
+    delete req.session.returnTo;
+    return req.session.save(err => {
+      if (err) console.error("❌ Session save (cleanup) error:", err);
+      return res.redirect(redirectUrl);
+    });
+  }
+  return res.redirect(redirectUrl);
+};
+
+module.exports.logout = (req, res, next) => {
+  req.logout(err => {
+    if (err) return next(err);
+    req.flash("success", "Goodbye!");
     res.redirect("/listings");
-    })
-}
+  });
+};

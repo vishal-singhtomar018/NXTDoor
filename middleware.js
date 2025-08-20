@@ -2,66 +2,56 @@ const { reset } = require("nodemon");
 const Listing = require("./models/listing");
 const Review = require("./models/review.js");
 
-// module.exports.saveRedirectUrl = (req, res, next) => {
-//     if (!req.session.returnTo && req.headers.referer) {
-//         // Save the referer (previous page) only if returnTo is not already set
-//         req.session.returnTo = req.headers.referer;
-//         console.log(`📌 Saved returnTo from referer: ${req.headers.referer}`);
-//     } else if (req.session.returnTo) {
-//         console.log(`📌 returnTo already exists: ${req.session.returnTo}`);
-//     } else {
-//         console.log("⚠️ No referer and no returnTo found.");
-//     }
-//     next();
-// };
 
-// middleware.js
-// middleware/isLoggedIn.js
-module.exports.isloggedIn = (req, res, next) => {
-  if (req.isAuthenticated && req.isAuthenticated()) {
-    return next();
-  }
+module.exports.isloggedIn=(req, res, next) => {
+  if (req.isAuthenticated && req.isAuthenticated()) return next();
 
   const url = req.originalUrl;
   console.log(`👀 Attempted URL: ${url}`);
 
-  // ignore static files and auth routes
   const isStatic = !!url.match(/\.(js|css|jpg|jpeg|png|gif|ico|svg)$/i);
-  const isAuthRoute =
-    url.startsWith("/login") ||
-    url.startsWith("/signup") ||
-    url.startsWith("/logout");
+  const isAuthRoute = url.startsWith("/login") || url.startsWith("/signup") || url.startsWith("/logout");
   if (isStatic || isAuthRoute || req.method !== "GET") {
     req.flash("error", "You must be signed in first!");
     return res.redirect("/login");
   }
 
-  // Treat index-like routes specially so they don't clobber deeper saved links
-  const isIndexRoute = url === "/" || url === "/listings" || url === "/home";
+  // consider an index/general route list here
+  const isIndexRoute = (u) => u === "/" || u === "/listings" || u === "/home";
 
-  // If a deep link is already stored, don't overwrite it with an index route
-  if (isIndexRoute && req.session && req.session.returnTo) {
-    console.log(
-      `ℹ️ Ignoring index route (${url}) because deeper returnTo exists: ${req.session.returnTo}`
-    );
+  // Helper: is URL "deeper" (more specific) than existing
+  const isDeeper = (existing, candidate) => {
+    if (!existing) return true;
+    // If existing is index and candidate is not, candidate is deeper
+    if (isIndexRoute(existing) && !isIndexRoute(candidate)) return true;
+    // prefer longer paths (simple heuristic). Also prefer ones that include an id or subpath.
+    if (candidate.length > existing.length) return true;
+    return false;
+  };
+
+  // Decide whether to set/overwrite returnTo
+  if (!req.session) {
     req.flash("error", "You must be signed in first!");
     return res.redirect("/login");
   }
 
-  // Save the deep link (or index if no deep link present)
-  if (req.session) {
+  const existing = req.session.returnTo;
+  if (!existing || isDeeper(existing, url)) {
     req.session.returnTo = url;
-    res.locals.returnTo = url; // optional for views
+    res.locals.returnTo = url;
     console.log(`🔐 Saved returnTo (session): ${req.session.returnTo}`);
-    // Persist session to store before redirecting
-    return req.session.save((err) => {
+    // Optional: enable for debugging who called it
+    // console.trace();
+
+    return req.session.save(err => {
       if (err) console.error("❌ Session save error:", err);
       req.flash("error", "You must be signed in first!");
       return res.redirect("/login");
     });
   }
 
-  // Fallback (should rarely happen)
+  // If we reach here, we decided NOT to overwrite (existing is deeper or equal)
+  console.log(`ℹ️ returnTo already set and not overwritten: ${existing}`);
   req.flash("error", "You must be signed in first!");
   return res.redirect("/login");
 };
@@ -93,3 +83,5 @@ module.exports.isReviewAuthor = async (req, res, next) => {
   }
   next();
 };
+
+

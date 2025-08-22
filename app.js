@@ -53,7 +53,7 @@ const sessionOptions = session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        // expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     }
@@ -79,34 +79,11 @@ async function main() {
     await mongoose.connect(process.env.ATLASDB_URL);
 }
 
-// Global middleware for flash messages & user info
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
-
-    const url = req.originalUrl;
-
-    const isStatic = url.match(/\.(js|css|jpg|jpeg|png|gif|ico|svg)$/i);
-    const isAuthRoute = url.startsWith("/login") || url.startsWith("/signup") || url.startsWith("/logout");
-
-    // Save returnTo only for GET, non-static, non-auth routes if user is NOT authenticated
-    if (
-        req.method === "GET" &&
-        !req.isAuthenticated() &&
-        !req.session.returnTo &&
-        !isStatic &&
-        !isAuthRoute
-    ) {
-        req.session.returnTo = url;
-        console.log(`🔐 Saved returnTo: ${url}`);
-    }
-
-    // ⚠️ This log caused the issue. It's now removed or commented out:
-    // if (isStatic) {
-    //     console.log(`📌 Static request ignored: ${url}`);
-    // }
-
+    // res.locals.redirectUrl=req.session.redirectUrl;
     next();
 });
 

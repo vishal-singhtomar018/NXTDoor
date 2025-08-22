@@ -149,7 +149,7 @@
 
   <% if(currUser && currUser._id.toString() === listing.owner._id.toString()) { %>
     <div class="d-flex gap-3 my-4">
-      <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
+      <div><a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a></div>
       <form method="post" action="/listings/<%= listing._id %>?_method=delete">
         <button class="btn btn-danger">Delete</button>
       </form>

@@ -73,7 +73,7 @@
         <p id="imageLabel" class="mb-0"><%= listing.images[0].label || "Apartment" %></p>
       </div>
     </div>
-
+    
     <div class="row gx-2 gy-2 justify-content-start">
       <% listing.images.forEach((img) => { %>
         <div class="col-4 col-md-2">
@@ -157,11 +157,11 @@
   <% } %>
 
   <!-- Review Section -->
-  <hr />
 
     <div>
+    <% if((currUser)) {%>
       <h4>Leave a Review</h4>
-      <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate>
+      <form action="/listings/<%= listing._id %>/reviews"  method="POST"class="needs-validation" novalidate>
         <div class="mb-3">
           <label class="form-label"><strong>Rating</strong></label>
           <fieldset class="starability-slot">
@@ -179,6 +179,7 @@
         </div>
         <button class="btn btn-outline-dark">Submit</button>
       </form>
+      <% } %>
     </div>
 
   <% if(listing.reviews.length > 0) { %>

@@ -67,7 +67,6 @@ module.exports.Createnewlisting = async (req, res, next) => {
   }
 };
 
-
 module.exports.showlistings = async (req, res, next) => {
   try {
     let { id } = req.params;
@@ -113,16 +112,20 @@ module.exports.editListings = async (req, res, next) => {
 };
 
 module.exports.updatelistings = async (req, res, next) => {
-  let { id } = req.params;
-  let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-  if (typeof req.file !== "undefined") {
-    let url = req.file.path;
-    let filename = req.file.filename;
-    listing.image = { url, filename };
-    await listing.save();
+  try {
+    let { id } = req.params;
+    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+    if (typeof req.file !== "undefined") {
+      let url = req.file.path;
+      let filename = req.file.filename;
+      listing.image = { url, filename };
+      await listing.save();
+    }
+    req.flash("success", " successfuly Updated!");
+    res.redirect(`/listings/${id}`);
+  } catch (err) {
+    next(err);
   }
-  req.flash("success", " successfuly Updated!");
-  res.redirect(`/listings/${id}`);
 };
 
 module.exports.deletelistings = async (req, res) => {

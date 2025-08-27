@@ -152,15 +152,44 @@ module.exports.updatelistings = async (req, res, next) => {
     // ✅ Re-geocode location + city + country if updated
     if (req.body.listing.location && req.body.listing.city && req.body.listing.country) {
       const query = `${req.body.listing.location}, ${req.body.listing.city}, ${req.body.listing.country}`;
-      const apiKey = process.env.OPENCAGE_API_KEY;
+      let lat, lon;
 
-      const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
-        params: { q: query, key: apiKey, limit: 1 }
-      });
+      try {
+        // Try OpenCage first
+        const apiKey = process.env.OPENCAGE_API_KEY;
+        const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
+          params: { q: query, key: apiKey, limit: 1 },
+        });
 
-      if (geoRes.data.results.length > 0) {
-        listing.latitude = geoRes.data.results[0].geometry.lat;
-        listing.longitude = geoRes.data.results[0].geometry.lng;
+        if (geoRes.data.results.length > 0) {
+          lat = geoRes.data.results[0].geometry.lat;
+          lon = geoRes.data.results[0].geometry.lng;
+        }
+      } catch (err) {
+        console.warn("OpenCage failed, falling back to Nominatim:", err.message);
+      }
+
+      // Fallback → Nominatim
+      if (!lat || !lon) {
+        try {
+          const nominatimRes = await axios.get("https://nominatim.openstreetmap.org/search", {
+            params: { q: query, format: "json", limit: 1 },
+            headers: { "User-Agent": "YourAppName/1.0" },
+          });
+
+          if (nominatimRes.data.length > 0) {
+            lat = nominatimRes.data[0].lat;
+            lon = nominatimRes.data[0].lon;
+          }
+        } catch (err) {
+          console.error("Nominatim also failed:", err.message);
+        }
+      }
+
+      // Save if we got coordinates
+      if (lat && lon) {
+        listing.latitude = lat;
+        listing.longitude = lon;
         await listing.save();
       }
     }
@@ -171,7 +200,6 @@ module.exports.updatelistings = async (req, res, next) => {
     next(err);
   }
 };
-
 
 
 module.exports.deletelistings = async (req, res) => {
@@ -250,3 +278,17 @@ module.exports.submit = async (req, res) => {
 //     }
 // };
 
+
+module.exports.MyListing= async (req, res, next) => {
+    try {
+        if (!req.user) {
+            req.flash("error", "You must be logged in to view your listings.");
+            return res.redirect("/login");
+        }
+
+        const myListings = await Listing.find({ owner: req.user._id });
+        res.render("listings/myListings.ejs", { myListings }); // pass to template
+    } catch (err) {
+        next(err);
+    }
+};

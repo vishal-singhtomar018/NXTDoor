@@ -5,10 +5,13 @@
     <a class="navbar-brand" href="/listings"><img src="/images/logo2.png" alt=""
         style="width: 40px; height: 40px; border-radius: 50%;"></a>
 
+
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
       aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
@@ -31,6 +34,10 @@
             <a class="nav-link" href="/about"><b>About Me 👨‍💻</b></a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/MyListing">MyListing</a>
+          </li>
+
           <% if (!currUser) { %>
             <li class="nav-item">
               <a class="nav-link" href="/signup"><b>Signup</b></a>
@@ -48,7 +55,7 @@
 
         <!-- Search Form -->
         <div class="navbar-nav ms-auto">
-          <form class="d-flex needs-validation" method="post" role="search" action="/submit"  novalidate >
+          <form class="d-flex needs-validation" method="post" role="search" action="/submit" novalidate>
             <label for="title"></label>
             <input class="form-control me-2 search-input" placeholder="Search destinations" type="text" id="title"
               name="title" aria-label="Search" autocomplete="off" required>

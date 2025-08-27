@@ -21,7 +21,7 @@ const listingSchema = new Schema({
   Maxpeople: Number,
   Bathrooms: Number,
   Bedrooms: Number,
-  latitude: Number, // <-- NEW
+  latitude: Number, 
   longitude: Number,
   amenities: {
     type: Object,

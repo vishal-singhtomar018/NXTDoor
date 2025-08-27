@@ -1,6 +1,7 @@
 const Listing = require("../models/listing");
 const express = require("express");
 const axios = require("axios");
+// console.log(client.find());
 
 // index route
 module.exports.explore = async (req, res, next) => {
@@ -27,8 +28,6 @@ module.exports.renderNewForm = (req, res, next) => {
     next(err);
   }
 };
-
-
 
 module.exports.Createnewlisting = async (req, res, next) => {
   try {
@@ -58,17 +57,24 @@ module.exports.Createnewlisting = async (req, res, next) => {
     newListing.images = images;
 
     // ✅ Geocode neighborhood + city + country with OpenCage
-    if (req.body.listing.location && req.body.listing.city && req.body.listing.country) {
+    if (
+      req.body.listing.location &&
+      req.body.listing.city &&
+      req.body.listing.country
+    ) {
       const query = `${req.body.listing.location}, ${req.body.listing.city}, ${req.body.listing.country}`;
       const apiKey = process.env.OPENCAGE_API_KEY; // Store your free API key in .env
 
-      const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
-        params: {
-          q: query,
-          key: apiKey,
-          limit: 1,
+      const geoRes = await axios.get(
+        "https://api.opencagedata.com/geocode/v1/json",
+        {
+          params: {
+            q: query,
+            key: apiKey,
+            limit: 1,
+          },
         }
-      });
+      );
 
       if (geoRes.data.results.length > 0) {
         newListing.latitude = geoRes.data.results[0].geometry.lat;
@@ -79,12 +85,10 @@ module.exports.Createnewlisting = async (req, res, next) => {
     await newListing.save();
     req.flash("success", "Listing Added");
     res.redirect("/listings/explore");
-
   } catch (err) {
     next(err);
   }
 };
-
 
 module.exports.showlistings = async (req, res, next) => {
   try {
@@ -130,13 +134,16 @@ module.exports.RendereditListings = async (req, res, next) => {
   }
 };
 
-
 module.exports.updatelistings = async (req, res, next) => {
   try {
     let { id } = req.params;
 
     // Update listing fields
-    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });
+    let listing = await Listing.findByIdAndUpdate(
+      id,
+      { ...req.body.listing },
+      { new: true }
+    );
 
     // Handle images if uploaded
     if (req.files && req.files.length > 0) {
@@ -150,32 +157,45 @@ module.exports.updatelistings = async (req, res, next) => {
     }
 
     // ✅ Re-geocode location + city + country if updated
-    if (req.body.listing.location && req.body.listing.city && req.body.listing.country) {
+    if (
+      req.body.listing.location &&
+      req.body.listing.city &&
+      req.body.listing.country
+    ) {
       const query = `${req.body.listing.location}, ${req.body.listing.city}, ${req.body.listing.country}`;
       let lat, lon;
 
       try {
         // Try OpenCage first
         const apiKey = process.env.OPENCAGE_API_KEY;
-        const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
-          params: { q: query, key: apiKey, limit: 1 },
-        });
+        const geoRes = await axios.get(
+          "https://api.opencagedata.com/geocode/v1/json",
+          {
+            params: { q: query, key: apiKey, limit: 1 },
+          }
+        );
 
         if (geoRes.data.results.length > 0) {
           lat = geoRes.data.results[0].geometry.lat;
           lon = geoRes.data.results[0].geometry.lng;
         }
       } catch (err) {
-        console.warn("OpenCage failed, falling back to Nominatim:", err.message);
+        console.warn(
+          "OpenCage failed, falling back to Nominatim:",
+          err.message
+        );
       }
 
       // Fallback → Nominatim
       if (!lat || !lon) {
         try {
-          const nominatimRes = await axios.get("https://nominatim.openstreetmap.org/search", {
-            params: { q: query, format: "json", limit: 1 },
-            headers: { "User-Agent": "YourAppName/1.0" },
-          });
+          const nominatimRes = await axios.get(
+            "https://nominatim.openstreetmap.org/search",
+            {
+              params: { q: query, format: "json", limit: 1 },
+              headers: { "User-Agent": "YourAppName/1.0" },
+            }
+          );
 
           if (nominatimRes.data.length > 0) {
             lat = nominatimRes.data[0].lat;
@@ -200,7 +220,6 @@ module.exports.updatelistings = async (req, res, next) => {
     next(err);
   }
 };
-
 
 module.exports.deletelistings = async (req, res) => {
   try {
@@ -254,7 +273,6 @@ module.exports.submit = async (req, res) => {
   }
 };
 
-
 // module.exports.CreateMap=  async (req, res) => {
 //     try {
 //         let listings = await Listing.find();
@@ -278,17 +296,16 @@ module.exports.submit = async (req, res) => {
 //     }
 // };
 
-
-module.exports.MyListing= async (req, res, next) => {
-    try {
-        if (!req.user) {
-            req.flash("error", "You must be logged in to view your listings.");
-            return res.redirect("/login");
-        }
-
-        const myListings = await Listing.find({ owner: req.user._id });
-        res.render("listings/myListings.ejs", { myListings }); // pass to template
-    } catch (err) {
-        next(err);
+module.exports.MyListing = async (req, res, next) => {
+  try {
+    if (!req.user) {
+      req.flash("error", "You must be logged in to view your listings.");
+      return res.redirect("/login");
     }
+
+    const myListings = await Listing.find({ owner: req.user._id });
+    res.render("listings/myListings.ejs", { myListings }); // pass to template
+  } catch (err) {
+    next(err);
+  }
 };

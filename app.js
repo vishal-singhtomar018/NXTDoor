@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV != "production") {
     require("dotenv").config();
 }
 
@@ -23,7 +23,7 @@ const MongoStore = require("connect-mongo");
 
 // Routes
 const UserRoute = require("./routes/user.js");
-const signup = require("./routes/signup.js");
+// const signup = require("./routes/signup.js");
 const listings = require("./routes/listing.js");
 const Reviews = require("./routes/review.js");
 const explore = require("./routes/explore.js");
@@ -98,7 +98,7 @@ app.use("/", ListingSearch);
 app.use("/listings", listings);
 app.use("", UserRoute);
 app.use("/listings", Reviews);
-app.use("/", signup);
+// app.use("/", signup);
 app.use("/search", FilterSearch);
 
 app.use("/about", (req, res) => {

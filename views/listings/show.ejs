@@ -1,215 +1,269 @@
 <% layout('/layouts/boilerplate') %>
 
-<div class="container mt-4">
-  <!-- Filter Bar -->
-  <div class="filter-bar">
-    <!-- Rent Type -->
-    <div class="dropdown">
-      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i class="bi bi-chevron-down"></i></button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Rent</a></li>
-        <li><a class="dropdown-item" href="#">Lease</a></li>
-      </ul>
-    </div>
+  <div class="container mt-4">
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <!-- Rent Type -->
+      <div class="dropdown">
+        <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i
+            class="bi bi-chevron-down"></i></button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Rent</a></li>
+          <li><a class="dropdown-item" href="#">Lease</a></li>
+        </ul>
+      </div>
 
-    <!-- City Dropdown -->
-    <div class="dropdown">
-      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i class="bi bi-chevron-down"></i></button>
-      <ul class="dropdown-menu" id="city-filter">
-        <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
-        <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
-        <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
-      </ul>
-    </div>
+      <!-- City Dropdown -->
+      <div class="dropdown">
+        <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i
+            class="bi bi-chevron-down"></i></button>
+        <ul class="dropdown-menu" id="city-filter">
+          <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
+          <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
+          <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
+        </ul>
+      </div>
 
-    <!-- Price Dropdown -->
-    <div class="dropdown">
-      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i class="bi bi-chevron-down"></i></button>
-      <ul class="dropdown-menu" id="priceFilter">
-        <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
-        <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
-        <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
-      </ul>
-    </div>
+      <!-- Price Dropdown -->
+      <div class="dropdown">
+        <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i
+            class="bi bi-chevron-down"></i></button>
+        <ul class="dropdown-menu" id="priceFilter">
+          <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
+          <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
+          <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
+        </ul>
+      </div>
 
-    <!-- Amenities -->
-    <div class="dropdown">
-      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i class="bi bi-chevron-down"></i></button>
-      <ul class="dropdown-menu">
-        <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
-        <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
-        <li><label class="dropdown-item"><input type="checkbox"> Pet Friendly</label></li>
-      </ul>
-    </div>
+      <!-- Amenities -->
+      <div class="dropdown">
+        <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i
+            class="bi bi-chevron-down"></i></button>
+        <ul class="dropdown-menu">
+          <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
+          <li><label class="dropdown-item"><input type="checkbox"> Pet Friendly</label></li>
+        </ul>
+      </div>
 
-    <!-- Selected Filters -->
-    <div class="filter-item">Flat +1 <i class="bi bi-x"></i></div>
-    <div class="filter-item">1 BHK <i class="bi bi-x"></i></div>
+      <!-- Selected Filters -->
+      <div class="filter-item">Flat +1 <i class="bi bi-x"></i></div>
+      <div class="filter-item">1 BHK <i class="bi bi-x"></i></div>
 
-    <!-- More Filters -->
-    <div class="dropdown">
-      <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
-        <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Furnished</a></li>
-        <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
-        <li><a class="dropdown-item" href="#">Bachelors</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<link rel="icon" href="/images/global-warming-1494965_1280.jpg" type="image/png">
-
-<div class="container my-5">
-  <h2 class="text-success mb-4"><%= listing.title %></h2>
-
-  <!-- Main Image + Thumbnails -->
-  <div class="main-image-wrapper">
-    <div class="position-relative mb-3">
-      <img id="mainImage" src="<%= listing.images[0].url %>" class="img-fluid rounded" style="max-height: 400px; object-fit: cover;">
-      <div class="position-absolute bottom-0 start-0 bg-dark text-white px-3 py-1 rounded-end">
-        <p id="imageLabel" class="mb-0"><%= listing.images[0].label || "Apartment" %></p>
+      <!-- More Filters -->
+      <div class="dropdown">
+        <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
+          <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Furnished</a></li>
+          <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
+          <li><a class="dropdown-item" href="#">Bachelors</a></li>
+        </ul>
       </div>
     </div>
-    
-    <div class="row gx-2 gy-2 justify-content-start">
-      <% listing.images.forEach((img) => { %>
-        <div class="col-4 col-md-2">
-          <img src="<%= img.url %>" class="img-thumbnail"
-               style="height: 100px; object-fit: cover; cursor: pointer;"
-               onclick="changeImage('<%= img.url %>', '<%= img.label || 'Apartment' %>')">
+  </div>
+
+  <link rel="icon" href="/images/global-warming-1494965_1280.jpg" type="image/png">
+
+  <div class="container my-5">
+    <h2 class="text-success mb-4">
+      <%= listing.title %>
+    </h2>
+
+    <!-- Main Image + Thumbnails -->
+    <div class="main-image-wrapper">
+      <div class="position-relative mb-3">
+        <img id="mainImage" src="<%= listing.images[0].url %>" class="img-fluid rounded"
+          style="max-height: 400px; object-fit: cover;">
+        <div class="position-absolute bottom-0 start-0 bg-dark text-white px-3 py-1 rounded-end">
+          <p id="imageLabel" class="mb-0">
+            <%= listing.images[0].label || "Apartment" %>
+          </p>
         </div>
-      <% }) %>
-    </div>
-  </div>
+      </div>
 
-  <script>
-    function changeImage(url, label) {
-      document.getElementById("mainImage").src = url;
-      document.getElementById("imageLabel").innerText = label;
-    }
-  </script>
-
-  <!-- Info Sections -->
-  <hr />
-  <div class="row g-3 align-items-start">
-    <div class="col-md-6">
-      <h5>The Space</h5>
-      <p><i class="fa fa-male"></i> Max people: <%= listing.Maxpeople %></p>
-      <p><i class="fa fa-bath"></i> Bathrooms: <%= listing.Bathrooms %></p>
-      <p><i class="fa fa-bed"></i> Bedrooms: <%= listing.Bedrooms %></p>
-    </div>
-    <div class="col-md-6 pt-4 pt-md-5">
-      <p><i class="fa fa-inr"></i> Price: <%= listing.price %></p>
-      <p><i class="fa fa-map-marker"></i> Place: <%= listing.location %></p>
-      <p><i class="fas fa-map-marked-alt"></i> City: <%= listing.place %></p>
-    </div>
-  </div>
-
-  <hr />
-  <h5>Amenities</h5>
-  <div class="row">
-    <div class="col-md-6">
-      <% if (listing.amenities?.parking) { %><p><i class="fa fa-map-marker"></i> Parking</p><% } %>
-      <% if (listing.amenities?.wifi) { %><p><i class="fa fa-wifi"></i> WiFi</p><% } %>
-      <% if (listing.amenities?.petFriendly) { %><p><i class="fa fa-paw"></i> Pet Friendly</p><% } %>
-    </div>
-    <div class="col-md-6">
-      <% if (listing.amenities?.kitchen) { %><p><i class="fa fa-cutlery"></i> Kitchen</p><% } %>
-      <% if (listing.amenities?.furnished) { %><p><i class="fa fa-couch"></i> Furnished</p><% } %>
-      <% if (listing.amenities?.bachelors) { %><p><i class="fa fa-user-check"></i> Bachelors</p><% } %>
-    </div>
-  </div>
-
-  <hr />
-  <h5><strong>Description</strong></h5>
-  <div class="description-box">
-    <p><%= listing.description %></p>
-  </div>
-
-  <p class="mt-3">We accept:
-    <i class="fa fa-credit-card"></i>
-    <i class="fa fa-cc-mastercard"></i>
-    <i class="fa fa-cc-amex"></i>
-    <i class="fa fa-cc-visa"></i>
-    <i class="fa fa-cc-paypal"></i>
-  </p>
-
-  <hr />
-  <h5>Rules</h5>
-  <ul>
-    <li><strong>Respect the Property</strong> – Maintain cleanliness and avoid damage.</li>
-    <li><strong>No Illegal Activities</strong> - Strictly prohibited within the premises.</li>
-    <li><strong>Pet Policy</strong> – Allowed only if specified.</li>
-    <li><strong>Use of Amenities</strong> – Keep common areas clean.</li>
-    <li><strong>Respect Neighbors</strong> - Avoid conflicts and maintain a friendly environment.</li>
-  </ul>
-
-  <% if(currUser && currUser._id.toString() === listing.owner._id.toString()) { %>
-    <div class="d-flex gap-3 my-4">
-      <div><a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a></div>
-      <form method="post" action="/listings/<%= listing._id %>?_method=delete">
-        <button class="btn btn-danger">Delete</button>
-      </form>
-    </div>
-  <% } %>
-
-  <!-- Review Section -->
-
-    <div>
-    <% if((currUser)) {%>
-      <h4>Leave a Review</h4>
-      <form action="/listings/<%= listing._id %>/reviews"  method="POST"class="needs-validation" novalidate>
-        <div class="mb-3">
-          <label class="form-label"><strong>Rating</strong></label>
-          <fieldset class="starability-slot">
-            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
-            <% for (let i = 1; i <= 5; i++) { %>
-              <input type="radio" id="rate<%= i %>" name="review[rating]" value="<%= i %>" />
-              <label for="rate<%= i %>" title="<%= i %> stars"><%= i %> star</label>
-            <% } %>
-          </fieldset>
-        </div>
-        <div class="mb-3">
-          <label for="Comment" class="form-label"><strong>Comments</strong></label>
-          <textarea name="review[Comment]" id="Comment" class="form-control" rows="4" required></textarea>
-          <div class="invalid-feedback">Please provide valid comments.</div>
-        </div>
-        <button class="btn btn-outline-dark">Submit</button>
-      </form>
-      <% } %>
-    </div>
-
-  <% if(listing.reviews.length > 0) { %>
-    <hr />
-    <h5>All Reviews</h5>
-    <div class="row">
-      <% for (review of listing.reviews) { %>
-        <div class="col-md-6 mb-3">
-          <div class="review-card">
-            <h6><i class="bi bi-person-fill"></i> <%= review.author.username %></h6>
-            <div class="review-stars">
-              <p class="starability-result" data-rating="<%= review.rating %>"></p>
-            </div>
-            <p class="review-comment">"<%= review.Comment %>"</p>
-            <% if(currUser && currUser._id.toString() === review.author._id.toString()) { %>
-              <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" method="POST">
-                <button class="btn btn-sm btn-remove">Remove</button>
-              </form>
-            <% } %>
+      <div class="row gx-2 gy-2 justify-content-start">
+        <% listing.images.forEach((img)=> { %>
+          <div class="col-4 col-md-2">
+            <img src="<%= img.url %>" class="img-thumbnail" style="height: 100px; object-fit: cover; cursor: pointer;"
+              onclick="changeImage('<%= img.url %>', '<%= img.label || 'Apartment' %>')">
           </div>
-        </div>
-      <% } %>
+          <% }) %>
+      </div>
     </div>
-  <% } %>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function changeImage(url, label) {
+        document.getElementById("mainImage").src = url;
+        document.getElementById("imageLabel").innerText = label;
+      }
+    </script>
+
+    <!-- Info Sections -->
+    <hr />
+    <div class="row g-3 align-items-start">
+      <div class="col-md-6">
+        <h5>The Space</h5>
+        <p><i class="fa fa-male"></i> Max people: <%= listing.Maxpeople %>
+        </p>
+        <p><i class="fa fa-bath"></i> Bathrooms: <%= listing.Bathrooms %>
+        </p>
+        <p><i class="fa fa-bed"></i> Bedrooms: <%= listing.Bedrooms %>
+        </p>
+      </div>
+      <div class="col-md-6 pt-4 pt-md-5">
+        <p><i class="fa fa-inr"></i> Price: <%= listing.price %>
+        </p>
+        <p><i class="fa fa-map-marker"></i> Location: <%= listing.location %>
+        </p>
+        <p><i class="fas fa-map-marked-alt"></i> City: <%= listing.city %>
+        </p>
+      </div>
+    </div>
+
+    <hr />
+    <h5>Amenities</h5>
+    <div class="row">
+      <div class="col-md-6">
+        <% if (listing.amenities?.parking) { %>
+          <p><i class="fa fa-map-marker"></i> Parking</p>
+          <% } %>
+            <% if (listing.amenities?.wifi) { %>
+              <p><i class="fa fa-wifi"></i> WiFi</p>
+              <% } %>
+                <% if (listing.amenities?.petFriendly) { %>
+                  <p><i class="fa fa-paw"></i> Pet Friendly</p>
+                  <% } %>
+      </div>
+      <div class="col-md-6">
+        <% if (listing.amenities?.kitchen) { %>
+          <p><i class="fa fa-cutlery"></i> Kitchen</p>
+          <% } %>
+            <% if (listing.amenities?.furnished) { %>
+              <p><i class="fa fa-couch"></i> Furnished</p>
+              <% } %>
+                <% if (listing.amenities?.bachelors) { %>
+                  <p><i class="fa fa-user-check"></i> Bachelors</p>
+                  <% } %>
+      </div>
+    </div>
+
+    <hr />
+    <h5><strong>Description</strong></h5>
+    <div class="description-box">
+      <p>
+        <%= listing.description %>
+      </p>
+    </div>
+
+    <p class="mt-3">We accept:
+      <i class="fa fa-credit-card"></i>
+      <i class="fa fa-cc-mastercard"></i>
+      <i class="fa fa-cc-amex"></i>
+      <i class="fa fa-cc-visa"></i>
+      <i class="fa fa-cc-paypal"></i>
+    </p>
+
+    <hr />
+    <h5>Rules</h5>
+    <ul>
+      <li><strong>Respect the Property</strong> – Maintain cleanliness and avoid damage.</li>
+      <li><strong>No Illegal Activities</strong> - Strictly prohibited within the premises.</li>
+      <li><strong>Pet Policy</strong> – Allowed only if specified.</li>
+      <li><strong>Use of Amenities</strong> – Keep common areas clean.</li>
+      <li><strong>Respect Neighbors</strong> - Avoid conflicts and maintain a friendly environment.</li>
+    </ul>
+
+    <% if(currUser && currUser._id.toString()===listing.owner._id.toString()) { %>
+      <div class="d-flex gap-3 my-4">
+        <div><a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a></div>
+        <form method="post" action="/listings/<%= listing._id %>?_method=delete">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <% } %>
+
+        <!-- Review Section -->
+
+        <div>
+          <% if((currUser)) {%>
+            <h4>Leave a Review</h4>
+            <form action="/listings/<%= listing._id %>/reviews" method="POST" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label class="form-label"><strong>Rating</strong></label>
+                <fieldset class="starability-slot">
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
+                    aria-label="No rating." />
+                  <% for (let i=1; i <=5; i++) { %>
+                    <input type="radio" id="rate<%= i %>" name="review[rating]" value="<%= i %>" />
+                    <label for="rate<%= i %>" title="<%= i %> stars">
+                      <%= i %> star
+                    </label>
+                    <% } %>
+                </fieldset>
+              </div>
+              <div class="mb-3">
+                <label for="Comment" class="form-label"><strong>Comments</strong></label>
+                <textarea name="review[Comment]" id="Comment" class="form-control" rows="4" required></textarea>
+                <div class="invalid-feedback">Please provide valid comments.</div>
+              </div>
+              <button class="btn btn-outline-dark">Submit</button>
+            </form>
+            <% } %>
+        </div>
+
+        <% if(listing.reviews.length> 0) { %>
+          <hr />
+          <h5>All Reviews</h5>
+          <div class="row">
+            <% for (review of listing.reviews) { %>
+              <div class="col-md-6 mb-3">
+                <div class="review-card">
+                  <h6><i class="bi bi-person-fill"></i>
+                    <%= review.author.username %>
+                  </h6>
+                  <div class="review-stars">
+                    <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                  </div>
+                  <p class="review-comment">"<%= review.Comment %>"</p>
+                  <% if(currUser && currUser._id.toString()===review.author._id.toString()) { %>
+                    <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=delete" method="POST">
+                      <button class="btn btn-sm btn-remove">Remove</button>
+                    </form>
+                    <% } %>
+                </div>
+              </div>
+              <% } %>
+          </div>
+          <% } %>
+  </div>
+
+  
+<div id="map" style="height:400px;"></div>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
-  function changeImage(url, label) {
-    document.getElementById("mainImage").src = url;
-    document.getElementById("imageLabel").innerText = label;
+  const listing = <%- JSON.stringify(listing) %>; // EJS data with stored lat/lng
+
+  if (listing.latitude && listing.longitude) {
+    const lat = parseFloat(listing.latitude);
+    const lon = parseFloat(listing.longitude);
+
+    const map = L.map('map').setView([lat, lon], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([lat, lon])
+      .addTo(map)
+      .bindPopup(`<b>${listing.title}</b><br>${listing.location}, ${listing.city}, ${listing.country}<br>₹${listing.price}`)
+      .openPopup();
+  } else {
+    // Fallback if coordinates are missing
+    document.getElementById('map').innerHTML = "<p>Map location not available</p>";
+    console.warn("Listing does not have latitude/longitude stored.");
   }
 </script>

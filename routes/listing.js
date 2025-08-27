@@ -31,6 +31,7 @@ router.route("/")
     listingController.Createnewlisting
   );
 
+// router.get("/map",listingController.CreateMap);
 
 
 router.get("/new",isloggedIn,listingController.renderNewForm);;
@@ -43,7 +44,7 @@ router.route("/:id")
 
 
 router.get("/:id",listingController.showlistings);
-router.get("/:id/edit",isloggedIn,isOwner,listingController.editListings); 
+router.get("/:id/edit",isloggedIn,isOwner,listingController.RendereditListings); 
 
 router.post("/submit",listingController.submit);
 

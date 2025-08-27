@@ -1,5 +1,6 @@
 const Listing = require("../models/listing");
 const express = require("express");
+const axios = require("axios");
 
 // index route
 module.exports.explore = async (req, res, next) => {
@@ -27,17 +28,17 @@ module.exports.renderNewForm = (req, res, next) => {
   }
 };
 
+
+
 module.exports.Createnewlisting = async (req, res, next) => {
   try {
     if (!req.body.listing) {
       return res.status(400).send("Bad Request: Missing listing data");
     }
 
-    // Initialize amenities if missing
+    // Normalize amenities
     req.body.listing.amenities = req.body.listing.amenities || {};
     const amenities = req.body.listing.amenities;
-
-    // Normalize amenities to boolean
     for (let key in amenities) {
       if (Array.isArray(amenities[key])) {
         amenities[key] = amenities[key][amenities[key].length - 1];
@@ -45,27 +46,45 @@ module.exports.Createnewlisting = async (req, res, next) => {
       amenities[key] = amenities[key] === "true";
     }
 
-    // Handle multiple image uploads
+    // Handle multiple images
     const images = req.files.map((file, i) => ({
       url: file.path,
       filename: file.filename,
       label: req.body.imageLabels?.[i] || "Apartment",
     }));
 
-    // console.log(images);
-
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.images = images;
 
-    await newListing.save();
+    // ✅ Geocode neighborhood + city + country with OpenCage
+    if (req.body.listing.location && req.body.listing.city && req.body.listing.country) {
+      const query = `${req.body.listing.location}, ${req.body.listing.city}, ${req.body.listing.country}`;
+      const apiKey = process.env.OPENCAGE_API_KEY; // Store your free API key in .env
 
-    req.flash("success", "Added");
+      const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
+        params: {
+          q: query,
+          key: apiKey,
+          limit: 1,
+        }
+      });
+
+      if (geoRes.data.results.length > 0) {
+        newListing.latitude = geoRes.data.results[0].geometry.lat;
+        newListing.longitude = geoRes.data.results[0].geometry.lng;
+      }
+    }
+
+    await newListing.save();
+    req.flash("success", "Listing Added");
     res.redirect("/listings/explore");
+
   } catch (err) {
     next(err);
   }
 };
+
 
 module.exports.showlistings = async (req, res, next) => {
   try {
@@ -86,7 +105,7 @@ module.exports.showlistings = async (req, res, next) => {
   }
 };
 
-module.exports.editListings = async (req, res, next) => {
+module.exports.RendereditListings = async (req, res, next) => {
   try {
     const { id } = req.params;
     const listing = await Listing.findById(id);
@@ -111,29 +130,56 @@ module.exports.editListings = async (req, res, next) => {
   }
 };
 
+
 module.exports.updatelistings = async (req, res, next) => {
   try {
     let { id } = req.params;
-    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-    if (typeof req.file !== "undefined") {
-      let url = req.file.path;
-      let filename = req.file.filename;
-      listing.image = { url, filename };
+
+    // Update listing fields
+    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing }, { new: true });
+
+    // Handle images if uploaded
+    if (req.files && req.files.length > 0) {
+      const images = req.files.map((file, i) => ({
+        url: file.path,
+        filename: file.filename,
+        label: req.body.imageLabels?.[i] || "Apartment",
+      }));
+      listing.images = images;
       await listing.save();
     }
-    req.flash("success", " successfuly Updated!");
+
+    // ✅ Re-geocode location + city + country if updated
+    if (req.body.listing.location && req.body.listing.city && req.body.listing.country) {
+      const query = `${req.body.listing.location}, ${req.body.listing.city}, ${req.body.listing.country}`;
+      const apiKey = process.env.OPENCAGE_API_KEY;
+
+      const geoRes = await axios.get("https://api.opencagedata.com/geocode/v1/json", {
+        params: { q: query, key: apiKey, limit: 1 }
+      });
+
+      if (geoRes.data.results.length > 0) {
+        listing.latitude = geoRes.data.results[0].geometry.lat;
+        listing.longitude = geoRes.data.results[0].geometry.lng;
+        await listing.save();
+      }
+    }
+
+    req.flash("success", "Successfully Updated!");
     res.redirect(`/listings/${id}`);
   } catch (err) {
     next(err);
   }
 };
 
+
+
 module.exports.deletelistings = async (req, res) => {
   try {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     req.flash("success", "Successfuly Deleted");
-    res.redirect("/listings");
+    res.redirect("/listings/explore");
   } catch (err) {
     next(err);
   }
@@ -179,3 +225,28 @@ module.exports.submit = async (req, res) => {
     res.status(500).send("An error occurred while processing your request.");
   }
 };
+
+
+// module.exports.CreateMap=  async (req, res) => {
+//     try {
+//         let listings = await Listing.find();
+
+//         // Add coordinates dynamically if not stored
+//         listings = await Promise.all(listings.map(async (listing) => {
+//             if (!listing.latitude || !listing.longitude) {
+//                 const coords = await getCoordinates(listing.location);
+//                 if (coords) {
+//                     listing.latitude = coords.latitude;
+//                     listing.longitude = coords.longitude;
+//                 }
+//             }
+//             return listing;
+//         }));
+//         console.log()
+//         res.render('listings/map', { listings });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).send("Error fetching listings");
+//     }
+// };
+

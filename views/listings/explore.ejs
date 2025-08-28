@@ -1,83 +1,167 @@
 <% layout('/layouts/boilerplate') %>
   <!-- Navbar (sit on top) -->
-
-  <!-- Header -->
-  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
-    <img class="w3-image" src="/images/home.jpg" alt="Architecture" width="1500" height="800">
-    <div class="w3-display-middle w3-margin-top w3-center">
-      <h1 class="w3-xlarge w3-text-white">
-        <span class="w3-padding w3-black w3-opacity-min"><b>NXT</b></span>
-        <span class="w3-text-light-grey">Door</span>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>
+        Find Your Perfect
+        <span>Sanctuary</span>
       </h1>
-
+      <p>
+        Discover exceptional rooms in prime locations.
+        Where comfort meets elegance for the discerning traveler.
+      </p>
     </div>
-  </header>
+  </section>
+  <!-- Featured Rooms -->
+  <section class="featured-rooms">
+    <div class="featured-container">
+      <div class="featured-header">
+        <h2>Featured <span>Accommodations</span></h2>
+        <p>
+          Handpicked spaces that embody luxury, comfort, and exceptional service
+        </p>
+      </div>
+
+      <div class="featured-grid">
+        <!-- Room Card 1 -->
+        <div class="featured-card">
+          <div class="featured-img">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=600&fit=crop"
+              alt="Luxury Downtown Loft">
+            <div class="featured-badge">Entire apartment</div>
+          </div>
+          <div class="featured-body">
+            <h3>Luxury Downtown Loft</h3>
+            <div class="featured-location">
+              <i class="lucide lucide-map-pin"></i>
+              <span>Manhattan, New York</span>
+            </div>
+            <div class="featured-amenities">
+              <span><i class="lucide lucide-wifi"></i> WiFi</span>
+              <span><i class="lucide lucide-coffee"></i> Coffee</span>
+              <span><i class="lucide lucide-car"></i> Parking</span>
+            </div>
+            <div class="featured-footer">
+              <span>128 reviews</span>
+              <strong>₹299 <small>/night</small></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Card 2 -->
+        <div class="featured-card">
+          <div class="featured-img">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop"
+              alt="Cozy Garden Studio">
+            <div class="featured-badge">Private room</div>
+          </div>
+          <div class="featured-body">
+            <h3>Cozy Garden Studio</h3>
+            <div class="featured-location">
+              <i class="lucide lucide-map-pin"></i>
+              <span>Greenwich Village, New York</span>
+            </div>
+            <div class="featured-amenities">
+              <span><i class="lucide lucide-wifi"></i> WiFi</span>
+              <span><i class="lucide lucide-coffee"></i> Furnished</span>
+            </div>
+            <div class="featured-footer">
+              <span>89 reviews</span>
+              <strong>₹189 <small>/night</small></strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Room Card 3 -->
+        <div class="featured-card">
+          <div class="featured-img">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=600&fit=crop"
+              alt="Modern Penthouse Suite">
+            <div class="featured-badge">Entire apartment</div>
+          </div>
+          <div class="featured-body">
+            <h3>Modern Penthouse Suite</h3>
+            <div class="featured-location">
+              <i class="lucide lucide-map-pin"></i>
+              <span>SoHo, New York</span>
+            </div>
+            <div class="featured-amenities">
+              <span><i class="lucide lucide-wifi"></i> WiFi</span>
+              <span><i class="lucide lucide-coffee"></i>Furnished</span>
+              <span><i class="lucide lucide-car"></i> Parking</span>
+            </div>
+            <div class="featured-footer">
+              <span>67 reviews</span>
+              <strong>₹449 <small>/night</small></strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-action">
+        <a href="/listings/explore"><button class="featured-btn">View All Rooms</button></a>
+      </div>
+    </div>
+  </section>
 
   <!-- Page content -->
   <div class="w3-content w3-padding" style="max-width:1564px">
 
     <!-- Project Section -->
-    <div class="w3-container w3-padding-32" id="projects">
-      <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Find out</h3>
-    </div>
 
-    <div class="w3-row-padding">
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">1BHK</div>
-          <img src="/images/1bhk.jpg" alt="House" style="width:100%">
+    <section class="benefits-section">
+      <div class="benefits-container">
+        <div class="benefits-header">
+          <h2>Why Choose <span>NXTDoor</span></h2>
+          <p>
+            Experience the difference with our commitment to excellence in every detail
+          </p>
         </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">2BHK</div>
-          <img src="/images/2bhk.jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">3BHK</div>
-          <img src="/images/3bhk.jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">Barn House</div>
-          <img src="/images/house4.jpg" alt="House" style="width:100%">
-        </div>
-      </div>
-    </div>
-    <br><br>
-    <div class="w3-row-padding">
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">Summer House</div>
-          <img src="/images/summe.jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">Brick House</div>
-          <img src="/images/brick.jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">Renovated</div>
-          <img src="/images/renovated.jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-      <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-display-container">
-          <div class="w3-display-topleft w3-black w3-padding w3-opacity">Stylish Kitchen</div>
-          <img src="/images/BARN.jpg" alt="House" style="width:99%">
-        </div>
-      </div>
-    </div>
 
-    <section class="about-us-section py-5 text-center" id="about">
+        <div class="benefits-grid">
+          <!-- Benefit 1 -->
+          <div class="benefits-card">
+            <div class="benefits-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h3>Verified & Secure</h3>
+            <p>Every property is personally vetted and meets our high standards for safety and quality.</p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="benefits-card">
+            <div class="benefits-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <h3>Instant Booking</h3>
+            <p>Book your perfect room in seconds with our streamlined reservation process.</p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="benefits-card">
+            <div class="benefits-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3>24/7 Support</h3>
+            <p>Our dedicated team is here to help you every step of the way, anytime you need us.</p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="benefits-card">
+            <div class="benefits-icon">
+              <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <h3>Best Price Promise</h3>
+            <p>We guarantee the lowest rates and match any competitor's price you find elsewhere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="about-us-section py-5 text-center" id="about">
       <div class="container">
-        <h2 class="fw-bold text-primary mb-3">About US</h2>
+        <h2 class="fw-bold  mb-3 " style="color: #f59e0b;">About US</h2>
         <div class="underline mx-auto mb-4"></div>
         <p class="text-muted mx-auto" style="max-width: 600px;">
           Finding the right room shouldn’t be complicated.
@@ -86,15 +170,16 @@
           We focus on comfort, transparency, and hassle-free renting.
           Your perfect room is waiting — let’s help you find it today!
         </p>
-         <a href="https://findyourhome-tlba.onrender.com" target="_blank"><button class="btn  mt-3">LEARN MORE</button></a>
+        <a href="https://findyourhome-tlba.onrender.com" target="_blank"><button class="btn  mt-3">LEARN
+            MORE</button></a>
       </div>
-    </section>
+    </article>
 
 
     <!-- CLient section -->
 
-    <section class="py-5 bg-white text-center" id="testimonials">
-      <h2 class="fw-bold text-primary mb-5">Happy Clients</h2>
+    <article class="py-5 bg-white text-center" id="testimonials">
+      <h2 class="fw-bold mb-5" style="color: #f59e0b;">Happy Clients</h2>
       <div class="container">
         <div class="row justify-content-center g-4">
 
@@ -159,18 +244,9 @@
 
         </div>
       </div>
-    </section>
+    </article>
 
     </section><br><br>
-    <!-- Contact Section -->
-
-
-
-    <!-- Image of location/map -->
-    <div class="w3-container">
-      <img src="/images/map.jpg" class="w3-image" style="width:100%">
-    </div>
 
     <!-- End page content -->
   </div>
-  

@@ -15,7 +15,8 @@ module.exports.explore = async (req, res, next) => {
 
 module.exports.index = async (req, res, next) => {
   try {
-    res.render("listings/explore.ejs");
+    const allListings = await Listing.find({});
+    res.render("listings/explore.ejs",{allListings});
   } catch (err) {
     next(err);
   }

@@ -14,15 +14,15 @@
 
             <!-- City -->
             <!-- City Dropdown -->
-                <div class="dropdown">
-                    <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i
-                            class="bi bi-chevron-down"></i></button>
-                    <ul class="dropdown-menu" id="city-filter">
-                        <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
-                        <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
-                        <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
-                    </ul>
-                </div>
+            <div class="dropdown">
+                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i
+                        class="bi bi-chevron-down"></i></button>
+                <ul class="dropdown-menu" id="city-filter">
+                    <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
+                    <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
+                    <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
+                </ul>
+            </div>
 
             <!-- Price Dropdown -->
             <div class="dropdown">
@@ -67,28 +67,56 @@
         </div>
     </div>
 
-        <!-- Filter Bar -->
-        <!-- Listings Display -->
-        <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-11 mt-4 display">
+    <!-- Filter Bar -->
+    <!-- Listings Display -->
+    <div class="container mt-4 ">
+        <div class="row g-4">
             <% for (let listing of allListings) { %>
-                <a href="/listings/<%= listing._id %>" class="listing-link">
-                    <div class="card col listing-card">
-                        <img class="card-img-top"
-                            src="<%= (listing.images && listing.images.length > 0) ? listing.images[0].url : '/images/default-placeholder.png' %>"
-                            alt="Listing_image" style="height: 20rem; object-fit: cover;">
-                        <div class="card-img-overlay"></div>
-                        <div class="card-body">
-                            <p class="card-text" style="color: black;">
-                                <b>
-                                    <%= listing.title %>
-                                </b><br>
-                                &#8377; <%= listing.price.toLocaleString("en-IN") %>
+                <div class="col-lg-4 col-md-6 col-sm-12 ">
+                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+
+                        <!-- Image with Badge -->
+                        <div class="position-relative listing-card">
+                            <a href="/listings/<%= listing._id %>"><img class="card-img-top"
+                                src="<%= (listing.images && listing.images.length > 0) ? listing.images[0].url : '/images/default-placeholder.png' %>"
+                                alt="Listing_image" style="height: 18rem; object-fit: cover;"></a>
+                            <span class="badge bg-dark position-absolute top-0 start-0 m-2 px-3 py-1 rounded-pill">
+                                <%= listing.Type || "NXTDoor" %>
+                            </span>
+                        </div>
+
+                        <!-- Card Body -->
+                        <div class="card-body mt-4 ">
+                            <h5 class="card-title fw-bold">
+                                <%= listing.title %>
+                            </h5>
+
+                            <p class="text-muted small mb-1">
+                                <i class="fa fa-calendar"></i>
+                                <%= new Date(listing.createdAt).toLocaleDateString("en-US", { year: "numeric" ,
+                                    month: "short" , day: "numeric" }) || "no date available" %>
+                            </p>
+
+                            <p class="card-text text-secondary">
+                                <%= listing.description ? listing.description.length> 100
+                                    ? listing.description.substring(0, 100) + "..."
+                                    : listing.description
+                                    : "No description available" %>
                             </p>
                         </div>
+
+
+                        <!-- Card Footer with Icons -->
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between">
+                            <a href="#" class="text-danger"><i class="fa fa-heart"></i></a>
+                            <!-- <a href="#" class="text-secondary"><i class="fa fa-share-alt"></i></a> -->
+                            <a href="/listings/<%= listing._id %>" class="text-secondary"><i class="fa fa-eye"></i></a>
+                        </div>
                     </div>
-                </a>
+                </div>
                 <% } %>
         </div>
+    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

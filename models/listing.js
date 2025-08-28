@@ -12,16 +12,16 @@ const listingSchema = new Schema({
       label: String,
     },
   ],
-  price: { type: Number, required: true }, // Ensure price is required
+  price: { type: Number, required: true },
   city: String,
   location: String,
   country: String,
   contact: Number,
-  Type: { type: String, enum: ["Apartment", "House", "Shared Room", "Studio"] }, // Enforce predefined types
+  Type: { type: String, enum: ["Apartment", "House", "Shared Room", "Studio"] },
   Maxpeople: Number,
   Bathrooms: Number,
   Bedrooms: Number,
-  latitude: Number, 
+  latitude: Number,
   longitude: Number,
   amenities: {
     type: Object,
@@ -36,7 +36,8 @@ const listingSchema = new Schema({
   },
   reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   owner: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-});
+}, { timestamps: true });   // <-- Add this
+
 
 // Middleware to delete associated reviews when a listing is deleted
 listingSchema.post("findOneAndDelete", async (listing) => {

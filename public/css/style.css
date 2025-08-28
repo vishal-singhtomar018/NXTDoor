@@ -1322,8 +1322,8 @@ input#name {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -260px;   /* hide initially */
-  width: 260px;
+  right: -310px;   /* hide initially */
+  width: 310px;
   height: 100%;
   background: #fff;
   border-left: 1px solid #e5e7eb;
@@ -1405,4 +1405,27 @@ input#name {
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
   cursor: pointer;
+}
+
+
+.listing-card {
+  position: relative;
+}
+
+.eye-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: 2rem;
+  padding: 15px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.listing-card:hover .eye-overlay {
+  opacity: 1;
 }

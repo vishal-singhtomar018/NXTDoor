@@ -1,63 +1,105 @@
 <% layout('/layouts/boilerplate') %>
 
-<div class="responsive-container-block bigContainer">
-  <div class="responsive-container-block Container">
+  <div class="responsive-container-block bigContainer">
 
-    <!-- Left Content Section -->
-    <div class="responsive-container-block leftSide">
-      <p class="text-blk heading">About Me</p>
+    <% layout('/layouts/boilerplate') %>
 
-      <div class="d-flex align-items-center mb-4">
+      <div
+        style="max-width: 900px; margin: 0 auto; text-align: center; padding: 50px 20px; font-family: Arial, sans-serif;">
+
         <!-- Profile Image -->
-        <img src="/images/MIne.jpg" 
-             alt="Vipin Yadav Profile Photo" 
-             style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white; margin-right: 15px;">
-        <h2 style="color:#D9A299; margin: 0;">Hi, I'm Vishal Singh Tomar</h2>
+        <div>
+          <img src="/images/MIne.jpg" alt="Vishal Singh Tomar"
+            style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #e6e6e6;">
+        </div>
+
+        <!-- Name & Title -->
+        <h1 style="margin: 15px 0 5px; font-size: 32px; font-weight: bold;">Vishal Singh Tomar</h1>
+        <p style="font-size: 18px; color: #666; margin: 0;">Full-Stack Developer</p>
+        <p style="font-size: 15px; color: #888; margin: 5px 0;">📍 India | 💡 Open to Projects</p>
+
+        <!-- About -->
+        <p style="font-size: 16px; line-height: 1.6; color: #444; max-width: 700px; margin: 20px auto;">
+          I’m a <strong>full-stack developer</strong> specializing in creating web platforms that solve real-world
+          problems.
+          Proficient in <span style="color: #0073e6;">MERN stack, API design, and responsive UI/UX</span>,
+          I enjoy transforming ideas into scalable, elegant applications.
+        </p>
+
+        <!-- Mission -->
+        <h3 style="font-size: 22px; font-weight: bold; margin: 40px 0 20px;">My Mission</h3>
+        <p style="font-size: 16px; color: #444; max-width: 700px; margin: 10px auto;">
+          I created <a href="/listings" style="color: #0073e6; text-decoration: underline;">NXTDoor</a>
+          to simplify rentals, helping people find homes with ease.
+          The platform connects tenants and landlords efficiently, offering verified listings,
+          secure processes, and user-friendly navigation.
+        </p>
+
+        <!-- Skills Section -->
+        <h2 style="font-size: 22px; font-weight: bold; margin: 40px 0 20px;">Skills & Expertise</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">JavaScript</span>
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">React</span>
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">Node.js</span>
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">MongoDB</span>
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">UI/UX Design</span>
+          <span style="background:#f5f5f5; padding:8px 15px; border-radius:20px;">API Design</span>
+        </div>
+
+        <!-- Professional Journey -->
+        <h2 style="font-size: 22px; font-weight: bold; margin: 40px 0 20px;">Professional Journey</h2>
+        <div
+          style="background: #fff; border: 1px solid #eee; padding: 20px; border-radius: 12px; box-shadow: 0px 3px 8px rgba(0,0,0,0.05); max-width: 700px; margin: 0 auto; text-align: left;">
+          <h3 style="margin:0; font-size:18px; font-weight:bold;">Founder & Developer</h3>
+          <p style="margin: 5px 0; color: #0073e6;">NXTDoor Platform</p>
+          <p style="margin: 0; font-size: 14px; color: #666;">2023 - Present</p>
+          <p style="margin-top:10px; font-size:15px; color:#444;">
+            Built a rental platform that connects tenants and landlords with secure, efficient, and user-friendly
+            solutions.
+          </p>
+        </div>
+
+
+      </div>
+      <!-- Let's Connect Section -->
+      <div
+        style="background: #fff; border: 1px solid #eee; border-radius: 12px; box-shadow: 0px 3px 8px rgba(0,0,0,0.05); max-width: 700px; margin: 50px auto; padding: 40px; text-align: center;">
+
+        <h2 style="font-size: 22px; font-weight: bold; margin-bottom: 15px;">Let's Connect</h2>
+        <p style="font-size: 16px; color: #555; margin-bottom: 30px;">
+          I'm always interested in new opportunities and collaborations.
+          Whether you have a project in mind or just want to chat about design and technology.
+        </p>
+
+        <!-- Buttons -->
+        <div style="margin-bottom: 25px;">
+          <a href="mailto:globalgateway018@gmail.com"
+            style="display:inline-block; margin: 5px; padding: 10px 20px; background: #3b82f6; color: #fff; border-radius: 8px; font-weight: bold; text-decoration: none; transition: 0.3s;">
+            <i class="fa-solid fa-envelope"></i> Get In Touch
+          </a>
+          <a href="/resume.pdf" download
+            style="display:inline-block; margin: 5px; padding: 10px 20px; border: 1px solid #ccc; border-radius: 8px; font-weight: bold; color:#333; text-decoration: none; transition: 0.3s;">
+            Download Resume
+          </a>
+        </div>
+
+        <!-- Social Icons -->
+        <div style="display:flex; justify-content: center; gap: 15px;">
+          <a href="https://www.linkedin.com/in/vishal-tomar-54068a281/" target="_blank"
+            style="width:40px; height:40px; border-radius:50%; background:#f5f5f5; display:flex; align-items:center; justify-content:center; color:#333; text-decoration:none; font-size:18px;">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/vishal-singhtomar018" target="_blank"
+            style="width:40px; height:40px; border-radius:50%; background:#f5f5f5; display:flex; align-items:center; justify-content:center; color:#333; text-decoration:none; font-size:18px;">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank"
+            style="width:40px; height:40px; border-radius:50%; background:#f5f5f5; display:flex; align-items:center; justify-content:center; color:#333; text-decoration:none; font-size:18px;">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </div>
+
       </div>
 
-      <p class="text-blk subHeading" style="color: black;">
-        I’m a <span style="font-weight:bold;">full-stack developer</span> specializing in creating web platforms that solve real-world problems. 
-        Proficient in <span style="color: rgb(0, 191, 255);">MERN stack, API design, and responsive UI/UX</span>, I enjoy transforming ideas into scalable, elegant applications.
-      </p>
-
-      <h3 style="color: #D9A299;">My Mission</h3>
-      <p style="color:black">
-        I created <a href="/listings" style="color: rgb(0, 191, 255); text-decoration: underline;">NXTDoor</a> to simplify rentals, helping people find homes with ease. 
-        The platform connects tenants and landlords efficiently, offering verified listings, secure processes, and user-friendly navigation.
-      </p>
-
-      <h3 style="color:#D9A299;">Let’s Connect</h3>
-      <p style="color: black">
-        I’m always open to new ideas, collaborations, or tech discussions. Feel free to connect via the links below!
-      </p>
-
-      <!-- Social Links -->
-      <div class="d-flex align-items-center mt-3">
-        <!-- GitHub -->
-        <a href="https://github.com/yourgithub" target="_blank" class="me-3" >
-          <i class="fa-brands fa-github "></i>
-        </a>
-        <!-- LinkedIn -->
-        <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="me-3" >
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <!-- Email -->
-        <a href="mailto:globalgateway018@gmail.com" class="me-3">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Right Image Section -->
-    <div class="responsive-container-block rightSide">
-      <img class="number1img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET32.jpg" alt="Team">
-      <img class="number2img" src="/images/summe.jpg" alt="Rental">
-      <img class="number3img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/b245.png" alt="Cozy Home">
-      <img class="number5img" src="/images/Desert.jpg" alt="Desert View">
-      <img src="/images/house4.jpg" alt="Modern House" class="number4vid" />
-      <img class="number7img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/d51.png" alt="Explore More">
-      <img class="number6img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/d12.png" alt="Connected">
-    </div>
 
   </div>
-</div>

@@ -47,7 +47,13 @@ body {
 /* Default font size (desktop) */
 .navbar .nav-link {
   font-size: 1rem;
+  transition: color 0.3s;
   /* default size */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #7f5af0;
+  /* Purple accent on hover */
 }
 
 /* Medium screen (tablet) */
@@ -527,19 +533,21 @@ input#name {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -310px;   /* hide initially */
+  right: -310px;
+  /* hide initially */
   width: 310px;
   height: 100%;
   background: #fff;
   border-left: 1px solid #e5e7eb;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   padding: 1rem;
   z-index: 1050;
 }
 
 .sidebar.active {
-  right: 0;  /* slide in */
+  right: 0;
+  /* slide in */
 }
 
 .sidebar-header {
@@ -622,7 +630,7 @@ input#name {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   font-size: 2rem;
   padding: 15px;

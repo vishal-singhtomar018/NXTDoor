@@ -38,6 +38,7 @@ router.get("/new",isloggedIn,listingController.renderNewForm);;
 // router.post("/search",listingController.FilterSearch);
 
 router.get("/MyListing",isloggedIn, listingController.MyListing);
+router.get("/profile",isloggedIn,listingController.profile);
 router.route("/:id")
 .put(isloggedIn,isOwner,upload.single("listing[image]"),listingController.updatelistings)
 .delete(isloggedIn,isOwner,listingController.deletelistings);
@@ -47,6 +48,7 @@ router.get("/:id",listingController.showlistings);
 router.get("/:id/edit",isloggedIn,isOwner,listingController.RendereditListings); 
 
 router.post("/submit",listingController.submit);
+
 
 
 module.exports=router;

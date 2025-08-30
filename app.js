@@ -100,7 +100,6 @@ app.use("", UserRoute);
 app.use("/listings", Reviews);
 // app.use("/", signup);
 app.use("/search", FilterSearch);
-
 app.use("/about", (req, res) => {
     res.render("listings/about.ejs");
 });

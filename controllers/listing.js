@@ -274,28 +274,7 @@ module.exports.submit = async (req, res) => {
   }
 };
 
-// module.exports.CreateMap=  async (req, res) => {
-//     try {
-//         let listings = await Listing.find();
 
-//         // Add coordinates dynamically if not stored
-//         listings = await Promise.all(listings.map(async (listing) => {
-//             if (!listing.latitude || !listing.longitude) {
-//                 const coords = await getCoordinates(listing.location);
-//                 if (coords) {
-//                     listing.latitude = coords.latitude;
-//                     listing.longitude = coords.longitude;
-//                 }
-//             }
-//             return listing;
-//         }));
-//         console.log()
-//         res.render('listings/map', { listings });
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).send("Error fetching listings");
-//     }
-// };
 
 module.exports.MyListing = async (req, res, next) => {
   try {
@@ -309,4 +288,10 @@ module.exports.MyListing = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
+};
+
+
+module.exports.profile =async (req, res, next) => {
+    const myListings = await Listing.find({ owner: req.user._id });
+    res.render("listings/Profile.ejs", { user: res.locals.currUser ,myListings});
 };

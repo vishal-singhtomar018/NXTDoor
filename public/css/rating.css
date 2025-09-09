@@ -678,3 +678,45 @@
 .footer-policies a:hover {
   color: #f59e0b;
 }
+
+/* Review Box */
+.review-box {
+  border: 1px solid #eee;
+}
+
+/* Stars */
+.star-rating {
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+.star {
+  color: #ddd;
+  transition: color 0.2s;
+  margin-right: 5px;
+}
+.star:hover ~ .star i,
+.star:hover i,
+input[type="radio"]:checked + label i {
+  color: gold !important;
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(90deg, #4facfe, #6a11cb);
+  border: none;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+.btn-gradient:hover {
+  background: linear-gradient(90deg, #6a11cb, #4facfe);
+  transform: translateY(-1px);
+}
+
+
+.star i {
+  color: #ddd; /* default gray */
+  transition: color 0.2s;
+}
+.star.active i {
+  color: gold; /* gold for selected stars */
+}

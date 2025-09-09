@@ -1,133 +1,144 @@
 <% layout('/layouts/boilerplate') %>
 
-    <div class="container mt-4">
-        <div class="filter-bar">
-            <!-- Rent Type -->
-            <div class="dropdown">
-                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i
-                        class="bi bi-chevron-down"></i></button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Rent</a></li>
-                    <li><a class="dropdown-item" href="#">Lease</a></li>
-                </ul>
-            </div>
+<div class="container mt-4">
+    <!-- Filter Bar -->
+    <div class="filter-bar">
 
-            <!-- City -->
-            <!-- City Dropdown -->
-            <div class="dropdown">
-                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i
-                        class="bi bi-chevron-down"></i></button>
-                <ul class="dropdown-menu" id="city-filter">
-                    <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
-                    <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
-                    <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
-                </ul>
-            </div>
+        <!-- Rent Type -->
+        <div class="dropdown">
+            <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Rent <i class="bi bi-chevron-down"></i></button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Rent</a></li>
+                <li><a class="dropdown-item" href="#">Lease</a></li>
+            </ul>
+        </div>
 
-            <!-- Price Dropdown -->
-            <div class="dropdown">
-                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i
-                        class="bi bi-chevron-down"></i></button>
-                <ul class="dropdown-menu" id="priceFilter">
-                    <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
-                    <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
-                    <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
-                    <button id="clear-filters" class="btn btn-outline-danger mb-3">Clear Filters</button>
-                </ul>
-            </div>
+        <!-- City -->
+        <div class="dropdown">
+            <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">City <i class="bi bi-chevron-down"></i></button>
+            <ul class="dropdown-menu" id="city-filter">
+                <li><a class="dropdown-item" href="#" data-place="Indore">Indore</a></li>
+                <li><a class="dropdown-item" href="#" data-place="Mumbai">Mumbai</a></li>
+                <li><a class="dropdown-item" href="#" data-place="Bangalore">Bangalore</a></li>
+            </ul>
+        </div>
 
+        <!-- Price -->
+        <div class="dropdown">
+            <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Budget <i class="bi bi-chevron-down"></i></button>
+            <ul class="dropdown-menu" id="priceFilter">
+                <li><a class="dropdown-item" href="#" data-range="0-5000">Under ₹5000</a></li>
+                <li><a class="dropdown-item" href="#" data-range="5000-10000">₹5000 - ₹10,000</a></li>
+                <li><a class="dropdown-item" href="#" data-range="10000-999999">Above ₹10,000</a></li>
+                <button id="clear-filters" class="btn btn-outline-danger mb-3">Clear Filters</button>
+            </ul>
+        </div>
 
+        <!-- Amenities -->
+        <div class="dropdown">
+            <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i class="bi bi-chevron-down"></i></button>
+            <ul class="dropdown-menu">
+                <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
+                <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
+                <li><label class="dropdown-item"><input type="checkbox"> Pet Friendly</label></li>
+            </ul>
+        </div>
 
-            <!-- Amenities -->
-            <div class="dropdown">
-                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">Amenities <i
-                        class="bi bi-chevron-down"></i></button>
-                <ul class="dropdown-menu">
-                    <li><label class="dropdown-item"><input type="checkbox"> WiFi</label></li>
-                    <li><label class="dropdown-item"><input type="checkbox"> Parking</label></li>
-                    <li><label class="dropdown-item"><input type="checkbox"> petFriendly</label></li>
-                </ul>
-            </div>
+        <!-- Example Selected Filters -->
+        <div class="filter-item"> Flat +1 <i class="bi bi-x"></i> </div>
+        <div class="filter-item"> 1 BHK <i class="bi bi-x"></i> </div>
 
-            <!-- Selected Filters -->
-            <div class="filter-item"> Flat +1 <i class="bi bi-x"></i> </div>
-            <div class="filter-item"> 1 BHK <i class="bi bi-x"></i> </div>
-
-            <!-- More Filters -->
-            <div class="dropdown">
-                <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
-                    <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Furnished</a></li>
-                    <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
-                    <li><a class="dropdown-item" href="#">Bachelors</a></li>
-                </ul>
-            </div>
+        <!-- More Filters -->
+        <div class="dropdown">
+            <button class="filter-item dropdown-toggle" data-bs-toggle="dropdown">
+                <span class="filter-count">3</span> More Filters <i class="bi bi-chevron-down"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Furnished</a></li>
+                <li><a class="dropdown-item" href="#">Semi-Furnished</a></li>
+                <li><a class="dropdown-item" href="#">Bachelors</a></li>
+            </ul>
         </div>
     </div>
+</div>
 
-    
 
-    <!-- Filter Bar -->
-    <!-- Listings Display -->
-    <div class="container mt-4 ">
-        <div class="row g-4">
-            <% for (let listing of allListings) { %>
-                <div class="col-lg-4 col-md-6 col-sm-12 featured-card"">
-                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+<!-- Listings -->
+<div class="container mt-4">
+    <div class="row g-4">
+        <% for (let listing of allListings) { %>
+            <div class="col-lg-4 col-md-6 col-sm-12 featured-card">
+                <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
 
-                        <!-- Image with Badge & Hover Eye -->
-                        <div class="position-relative listing-card">
-                            <a href="/listings/<%= listing._id %>">
-                                <img src="<%= (listing.images && listing.images.length > 0) ? listing.images[0].url : '/images/default-placeholder.png' %>"
-                                    class="card-img-top" alt="<%= listing.title %>"
-                                    style="height: 18rem; object-fit: cover;">
-                            </a>
+                    <!-- Image + Badge + Eye -->
+                    <div class="position-relative listing-card">
+                        <a href="/listings/<%= listing._id %>">
+                            <img src="<%= (listing.images && listing.images.length > 0) ? listing.images[0].url : '/images/default-placeholder.png' %>"
+                                class="card-img-top" alt="<%= listing.title %>"
+                                style="height: 18rem; object-fit: cover;">
+                        </a>
 
-                            <!-- Badge -->
-                            <span class="badge">
-                                <div class="featured-badge"><%=listing.Type || "NXTDoor" %></div>
-                            </span>
+                        <span class="badge bg-light text-dark position-absolute m-2 px-3 py-2 rounded-pill">
+                            <%= listing.Type || "Entire apartment" %>
+                        </span>
 
-                            <!-- Hover Eye Overlay -->
-                            <a href="/listings/<%= listing._id %>" class="eye-overlay">
-                                <i class="fa fa-eye"></i>
-                            </a>
+                        <a href="/listings/<%= listing._id %>" class="eye-overlay">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body mt-3 p-3">
+                        <h5 class="card-title fw-bold mb-2"><%= listing.title %></h5>
+                        <p class="text-muted small mb-1"><%= listing.location || "Unknown Location" %></p>
+
+                        <!-- Amenities -->
+                        <div class="d-flex gap-3 text-secondary small mb-2">
+                            <% if (listing.amenities && Object.values(listing.amenities).some(val => val)) { %>
+                                <%
+                                    const availableAmenities = [];
+                                    if (listing.amenities.petFriendly) availableAmenities.push('<i class="fa fa-paw"></i> Pet Friendly');
+                                    if (listing.amenities.wifi) availableAmenities.push('<i class="fa fa-wifi"></i> WiFi');
+                                    if (listing.amenities.parking) availableAmenities.push('<i class="fa fa-car"></i> Parking');
+                                    if (listing.amenities.kitchen) availableAmenities.push('<i class="fa fa-cutlery"></i> Kitchen');
+                                    if (listing.amenities.bachelors) availableAmenities.push('<i class="fa fa-user-check"></i> Bachelors');
+                                    if (listing.amenities.furnished) availableAmenities.push('<i class="fa fa-couch"></i> Furnished');
+                                %>
+
+                                <% availableAmenities.slice(0, 2).forEach(function(am) { %>
+                                    <p><%- am %></p>
+                                <% }) %>
+
+                                <% if (availableAmenities.length > 2) { %>
+                                    <b><p>...</p></b>
+                                <% } %>
+
+                            <% } else { %>
+                                <p>No amenities available</p>
+                            <% } %>
+
+                            <div style="margin-left: auto;">
+                                <p class="mb-1 fw-bold text-dark">
+                                    &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / night
+                                </p>
+                            </div>
                         </div>
 
-                        <!-- Card Body -->
-                        <div class="card-body mt-3">
-                            <h5 class="card-title fw-bold mb-2">
-                                <%= listing.title %>
-                            </h5>
-                            <p class="text-muted small mb-2">
-                                <i class="fa fa-calendar"></i>
-                                <%= new Date(listing.createdAt).toLocaleDateString("en-US", { year: "numeric" ,
-                                    month: "short" , day: "numeric" }) %>
-                            </p>
-                            <p class="text-secondary mb-1">
-                                &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>
-                            </p>
-                            <p class="card-text text-secondary">
-                                <%= listing.description ? (listing.description.length> 80
-                                    ? listing.description.substring(0, 80) + "..."
-                                    : listing.description)
-                                    : "No description available" %>
-                            </p>
-                        </div>
+                        <!-- Reviews -->
+                        <p class="text-muted small">
+                            <%= listing.reviews.length ? listing.reviews.length + " reviews" : "No reviews yet" %>
+                        </p>
+                    </div>
 
-                        <!-- Card Footer -->
-                        <div class="card-footer bg-white border-0 d-flex justify-content-between">
-                            <a href="#" class="text-danger"><i class="fa fa-heart"></i></a>
-                            <a href="/listings/<%= listing._id %>" class="text-secondary"><i class="fa fa-eye"></i></a>
-                        </div>
+                    <!-- Footer -->
+                    <div class="card-footer bg-white border-0 d-flex justify-content-between">
+                        <a href="#" class="text-danger"><i class="fa fa-heart"></i></a>
+                        <a href="/listings/<%= listing._id %>" class="text-secondary"><i class="fa fa-eye"></i></a>
                     </div>
                 </div>
-
-                <% } %>
-        </div>
+            </div>
+        <% } %>
     </div>
+</div>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

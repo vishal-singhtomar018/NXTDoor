@@ -1,94 +1,109 @@
 <% layout('/layouts/boilerplate') %>
-<body><br><br>
-  <div class="col-8 offset-2 " style="margin-top: 40px;  ">
-    <h3 style="color: #fe424d;">Edit this Listings</h3><br>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
-      
-      <div class="mb-3">
-        <label for="title" class="form-label"><b>Title</b></label><br>
-        <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" autocomplete="off" required>
-        <div class="valid-feedback">Title looks good</div>
-      </div>
 
-      <div class="mb-3">
-        <label for="description" class="form-label"><b>Description</b></label><br>
-        <textarea cols="10" rows="5" name="listing[description]" class="form-control" autocomplete="off" required><%= listing.description %></textarea>
-        <div class="invalid-feedback">Description should be short</div>
-      </div>
+  <body><br><br>
+    <div class="col-8 offset-2 " style="margin-top: 40px;  ">
+      <h3 style="color: #fe424d;">Edit this Listings</h3><br>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation"
+        enctype="multipart/form-data">
 
-      <div class="mb-3">
-        Original Listing Image <br>
-        <img src="<%= originalimage %>" alt="" height="200" width="250">
-      </div>
-
-      <div class="mb-3">
-        <label for="image" class="form-label"><b>Upload New Image</b></label><br>
-        <input type="file" name="listing[image]" autocomplete="off" class="form-control">
-      </div>
-
-      <div class="mb-3">
-        <label for="price" class="form-label"><b>Price</b></label><br>
-        <input type="number" name="listing[price]" value="<%= listing.price %>" autocomplete="off" class="form-control" required>
-        <div class="invalid-feedback">Enter Valid Price</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="place" class="form-label"><b>City</b></label><br>
-        <input type="text" name="listing[city]" value="<%= listing.city %>" placeholder="Enter place" class="form-control" autocomplete="off" required>
-        <div class="invalid-feedback">Enter a valid location</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="location" class="form-label"><b>Location</b></label><br>
-        <input type="text" name="listing[location]" value="<%= listing.location %>" class="form-control" autocomplete="off" required>
-        <div class="invalid-feedback">Please Enter Valid Location</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="country" class="form-label"><b>Country</b></label><br>
-        <input type="text" name="listing[country]" value="<%= listing.country %>" class="form-control" autocomplete="off" required>
-        <div class="invalid-feedback">Please Enter Valid Country Name</div>
-      </div>
-
-      <br>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="Maxpeople"><b>Max people</b></label><br>
-          <input type="number" name="listing[Maxpeople]" value="<%= listing.Maxpeople %>" placeholder="Enter Limit" class="form-control" required min="0">
+        <div class="mb-3">
+          <label for="title" class="form-label"><b>Title</b></label><br>
+          <input type="text" name="listing[title]" value="<%= listing.title %>" class="form-control" autocomplete="off"
+            required>
+          <div class="valid-feedback">Title looks good</div>
         </div>
 
-        <div class="col-md-6 mb-3">
-          <label for="Bathrooms"><b>Bathrooms</b></label><br>
-          <input type="number" name="listing[Bathrooms]" value="<%= listing.Bathrooms %>" placeholder="Enter Limit" class="form-control" required min="0">
+        <div class="mb-3">
+          <label for="description" class="form-label"><b>Description</b></label><br>
+          <textarea cols="10" rows="5" name="listing[description]" class="form-control" autocomplete="off"
+            required><%= listing.description %></textarea>
+          <div class="invalid-feedback">Description should be short</div>
         </div>
 
-        <div class="col-md-6 mb-3">
-          <label for="Bedrooms"><b>Bedrooms</b></label><br>
-          <input type="number" name="listing[Bedrooms]" value="<%= listing.Bedrooms %>" placeholder="Enter Limit" class="form-control" required min="0">
+        <div class="mb-3">
+          Original Listing Image <br>
+          <img src="<%= originalimage %>" alt="" height="200" width="250">
         </div>
-      </div>
 
-      <br>
-      <button class="btn btn-dark edit-btn">Save Changes</button>
-    </form>
-  </div>
+        <div class="mb-3">
+          <label for="image" class="form-label"><b>Upload New Image</b></label><br>
+          <input type="file" name="listing[image]" autocomplete="off" class="form-control">
+        </div>
 
-  <script>
-    // Bootstrap validation script
-    (function () {
-      'use strict';
-      var forms = document.querySelectorAll('.needs-validation');
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-    })();
-  </script>
-</body>
-</html>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="city"><b>City</b></label>
+            <input type="text" name="listing[city]" value="<%= listing.city %>" placeholder="Enter City"
+              class="form-control" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="price"><b>Price</b></label>
+            <input type="number" name="listing[price]" value="<%= listing.price %>" placeholder="Enter price"
+              class="form-control" required min="0">
+            <div class="invalid-feedback">Enter a valid price</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="location"><b>Location</b></label>
+            <input type="text" name="listing[location]" value="<%= listing.location %>" placeholder="Enter location"
+              class="form-control" required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="country"><b>Country</b></label>
+            <input type="text" name="listing[country]" value="<%= listing.country %>" placeholder="Add country"
+              class="form-control" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="contact"><b>Contact Info</b></label>
+            <input type="text" name="listing[contact]" value="<%= listing.contact%>" pattern="[1-9]{1}[0-9]{9}"
+              placeholder="Enter contact number" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label for="Maxpeople"><b>Max people</b></label>
+            <input type="number" name="listing[Maxpeople]" value="<%= listing.Maxpeople %>" placeholder="Enter Limit" class="form-control" required
+              min="0">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="Bathrooms"><b>Bathrooms</b></label>
+            <input type="number" name="listing[Bathrooms]" value="<%= listing.Bathrooms %>" placeholder="Enter Limit" class="form-control" required
+              min="0">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="Bedrooms"><b>Bedrooms</b></label>
+            <input type="number" name="listing[Bedrooms]" value="<%= listing.Bedrooms %>" placeholder="Enter Limit" class="form-control" required
+              min="0">
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-dark edit-btn">Save Changes</button>
+      </form>
+    </div>
+
+    <script>
+      // Bootstrap validation script
+      (function () {
+        'use strict';
+        var forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+      })();
+    </script>
+  </body>
+
+  </html>

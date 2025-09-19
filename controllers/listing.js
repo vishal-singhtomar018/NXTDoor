@@ -1,7 +1,6 @@
 const Listing = require("../models/listing");
 const express = require("express");
 const axios = require("axios");
-// console.log(client.find());
 
 // index route
 module.exports.explore = async (req, res, next) => {

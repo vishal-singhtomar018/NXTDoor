@@ -32,7 +32,7 @@ module.exports.renderNewForm = (req, res, next) => {
 module.exports.Createnewlisting = async (req, res, next) => {
   try {
     if (!req.body.listing) {
-      return res.status(400).send("Bad Request: Missing listing data");
+      return res.status(400).send("Bad Request: Missing listing data.");
     }
 
     // Normalize amenities
@@ -83,7 +83,7 @@ module.exports.Createnewlisting = async (req, res, next) => {
     }
 
     await newListing.save();
-    req.flash("success", "Listing Added");
+    req.flash("success", "Listing Added successfully");
     res.redirect("/listings/explore");
   } catch (err) {
     next(err);

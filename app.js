@@ -92,6 +92,7 @@ app.get('/', (req, res) => {
     res.redirect('/listings');
 });
 
+
 // Routes (unchanged)
 app.use("/", explore);
 app.use("/", ListingSearch);
@@ -103,6 +104,12 @@ app.use("/search", FilterSearch);
 app.use("/about", (req, res) => {
     res.render("listings/about.ejs");
 });
+
+// app.get("/download-resume", (req, res) => {
+//   const filePath = path.join(__dirname, "public", "resume.pdf");
+//   res.download(filePath);
+// });
+
 
 
 app.all("*", (req, res, next) => {
